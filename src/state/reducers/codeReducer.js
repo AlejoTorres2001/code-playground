@@ -15,7 +15,7 @@ const codeReducer = (state = initState,action)=>{
             return {...state,js:action.payload}
     
         default:
-            break;
+            return state
     }
 }
 export default codeReducer;

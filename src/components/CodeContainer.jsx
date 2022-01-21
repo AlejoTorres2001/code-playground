@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-const CodeContainer = ({title,logo}) => {
-    const state = useSelector(state =>state)
-    const dispatch = useDispatch()
+import { useSelector } from "react-redux";
+const CodeContainer = ({title,logo,language}) => {
+    const state = useSelector(state => state.code[language]);
     const [code, setCode] = useState("");
     const handleChange = (e) => {
         setCode(e.target.value);

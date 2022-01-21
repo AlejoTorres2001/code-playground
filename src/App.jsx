@@ -4,9 +4,9 @@ import Display from './components/Display'
 function App() {
   return (
     <div className="App">
-     <CodeContainer title="HTML"></CodeContainer>
-     <CodeContainer title="CSS"></CodeContainer>
-     <CodeContainer title="JS"></CodeContainer>
+     <CodeContainer title="HTML" language="html"></CodeContainer>
+     <CodeContainer title="CSS" language="css"></CodeContainer>
+     <CodeContainer title="JS" language="js"></CodeContainer>
      <Display html=""></Display>
     </div>
   )
