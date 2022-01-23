@@ -9,9 +9,10 @@ const CodeContainer = ({ title, logo, language }) => {
     setCode(e.target.value, language);
   };
   return (
-    <div>
+    
+    <div className="flex flex-col bg-slate-600 border-2 border-gray-800">
       <h1>{title}</h1>
-      <textarea value={code} onChange={handleChange}></textarea>
+      <textarea className="focus:outline-none bg-slate-600 text-white grow" value={code} onChange={handleChange}></textarea>
     </div>
   );
 };
