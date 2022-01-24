@@ -2,13 +2,17 @@ import CodeContainer from "./components/CodeContainer";
 import Display from "./components/Display";
 import Split from "react-split-grid";
 import "./index.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
+    <div className="flex">
+      <NavBar/>
     <Split
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
-        <div className="grid-container h-screen w-screen overflow-hidden" {...getGridProps()}>
+        <div className="grid-container overflow-hidden h-screen w-screen " {...getGridProps()}>
+          
           <CodeContainer language="html"></CodeContainer>
           <CodeContainer language="css"></CodeContainer>
           <CodeContainer language="javascript"></CodeContainer>
@@ -19,7 +23,6 @@ function App() {
             {...getGutterProps("column", 1)}
           />
           <div />
-          <div />
           <div
             className="gutter-row gutter-row-1 bg-gray-400"
             {...getGutterProps("row", 1)}
@@ -28,6 +31,7 @@ function App() {
         </div>
       )}
     />
+  </div>
   );
 }
 
