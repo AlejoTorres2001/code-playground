@@ -3,16 +3,23 @@ import Display from "./components/Display";
 import Split from "react-split-grid";
 import "./index.css";
 import NavBar from "./components/NavBar";
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
 function App() {
+  const { height, width } = useWindowDimensions();
   return (
     <div className="scrollbar-hide">
     <div className="flex">
-      <NavBar/>
+      {
+        width > 1000  && (
+
+          <NavBar/>
+        )
+      }
     <Split
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
-        <div className="grid-container overflow-hidden  h-screen w-screen ml-[4rem] bottom-0 " {...getGridProps()}>
+        <div className={`grid-container overflow-hidden  h-screen w-screen ${width> 1200? 'ml-[4rem]':''}  bottom-0 `} {...getGridProps()}>
           
           <CodeContainer language="html"></CodeContainer>
           <CodeContainer language="css"></CodeContainer>
@@ -33,6 +40,11 @@ function App() {
       )}
     />
   </div>
+  {width<=600&&(
+    <h1>
+      menu
+    </h1>
+  )}
   <footer className="flex grow items-center justify-center bg-[#2D323C] mt-0">Alejo Torres</footer>
   </div>
   );
