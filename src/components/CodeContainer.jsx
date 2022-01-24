@@ -12,7 +12,7 @@ const CodeContainer = ({  language }) => {
     <div className={`flex flex-col focus:outline-none bg-gray-600`}>
       <Editor
         theme="vs-dark"
-        options={{fontSize: "18px"}}
+        options={{fontSize: "18px",automaticLayout: true}}
         defaultLanguage={language}
         value={code}
         onChange={handleChange}

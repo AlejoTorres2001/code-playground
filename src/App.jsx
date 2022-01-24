@@ -8,7 +8,7 @@ function App() {
     <Split
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
-        <div className="grid-container h-screen w-screen" {...getGridProps()}>
+        <div className="grid-container h-screen w-screen overflow-hidden" {...getGridProps()}>
           <CodeContainer language="html"></CodeContainer>
           <CodeContainer language="css"></CodeContainer>
           <CodeContainer language="javascript"></CodeContainer>
