@@ -9,9 +9,9 @@ function App() {
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
         <div className="grid-container h-screen w-screen" {...getGridProps()}>
-          <CodeContainer title="HTML" language="html"></CodeContainer>
-          <CodeContainer title="CSS" language="css"></CodeContainer>
-          <CodeContainer title="JS" language="javascript"></CodeContainer>
+          <CodeContainer language="html"></CodeContainer>
+          <CodeContainer language="css"></CodeContainer>
+          <CodeContainer language="javascript"></CodeContainer>
           <Display></Display>
           <div />
           <div

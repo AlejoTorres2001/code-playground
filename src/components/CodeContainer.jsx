@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../state/index";
 import Editor from "@monaco-editor/react";
 
-const CodeContainer = ({ title, logo, language }) => {
+const CodeContainer = ({  language }) => {
   const code = useSelector((state) => state.code[language]);
   const dispatch = useDispatch();
   const { setCode } = bindActionCreators(actionCreators, dispatch);
