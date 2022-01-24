@@ -6,12 +6,13 @@ import NavBar from "./components/NavBar";
 
 function App() {
   return (
+    <div>
     <div className="flex">
       <NavBar/>
     <Split
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
-        <div className="grid-container overflow-hidden h-screen w-screen " {...getGridProps()}>
+        <div className="grid-container overflow-hidden  h-screen w-screen ml-[5rem] bottom-0 " {...getGridProps()}>
           
           <CodeContainer language="html"></CodeContainer>
           <CodeContainer language="css"></CodeContainer>
@@ -31,6 +32,8 @@ function App() {
         </div>
       )}
     />
+  </div>
+  <footer className="flex grow items-center justify-center bg-red-300 mt-0">Alejo Torres</footer>
   </div>
   );
 }
