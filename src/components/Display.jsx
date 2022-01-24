@@ -21,7 +21,7 @@ const Display = () => {
     </html>
     `
   }
-  return <div className="flex flex-col">
+  return <div className="flex">
       <iframe  className="outline-none  grow" srcDoc={makeHtml()}></iframe>
   </div>;
 };

@@ -9,19 +9,19 @@ const CodeContainer = ({ title, logo, language }) => {
   const { setCode } = bindActionCreators(actionCreators, dispatch);
   const handleChange = (value, event) => {setCode(value, language);};
   return (
-    <div className={`flex flex-co focus:outline-none bg-gray-600 font-mono text-white grow `}>
+    <div className={`flex flex-col focus:outline-none bg-gray-600`}>
       <Editor
         theme="vs-dark"
         options={{fontSize: "18px"}}
         defaultLanguage={language}
         value={code}
-       
         onChange={handleChange}
         className={`${language}`}
       ></Editor>
-      {/* <textarea className={`focus:outline-none bg-gray-600 font-mono text-white grow ${language}`} value={code} onChange={handleChange}></textarea> */}
+     
     </div>
   );
 };
 
 export default CodeContainer;
+ {/* <textarea className={`focus:outline-none bg-gray-600 font-mono text-white grow ${language}`} value={code} onChange={handleChange}></textarea> */}
