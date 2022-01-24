@@ -8,10 +8,10 @@ function App() {
     <Split
       minSize={100}
       render={({ getGridProps, getGutterProps }) => (
-        <div className="grid h-screen w-screen" {...getGridProps()}>
+        <div className="grid-container h-screen w-screen" {...getGridProps()}>
           <CodeContainer title="HTML" language="html"></CodeContainer>
           <CodeContainer title="CSS" language="css"></CodeContainer>
-          <CodeContainer title="JS" language="js"></CodeContainer>
+          <CodeContainer title="JS" language="javascript"></CodeContainer>
           <Display></Display>
           <div />
           <div

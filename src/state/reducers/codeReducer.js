@@ -1,7 +1,7 @@
 const initState = {
     html :"",
     css:"",
-    js:"", 
+    javascript:"", 
 }
 const codeReducer = (state = initState,action)=>{
     switch (action.type) {
@@ -11,8 +11,8 @@ const codeReducer = (state = initState,action)=>{
         case "UPDATE_CSS":
             return {...state,css:action.payload}
     
-        case "UPDATE_JS":
-            return {...state,js:action.payload}
+        case "UPDATE_JAVASCRIPT":
+            return {...state,javascript:action.payload}
     
         default:
             return state

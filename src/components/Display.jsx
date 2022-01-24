@@ -14,14 +14,14 @@ const Display = () => {
     <head/>
     <body>
     <script>
-    ${state.code.js}
+    ${state.code.javascript}
     </script>
     ${state.code.html}
     </body>
     </html>
     `
   }
-  return <div className="flex flex-col font-mono">
+  return <div className="flex flex-col">
       <iframe  className="outline-none  grow" srcDoc={makeHtml()}></iframe>
   </div>;
 };
