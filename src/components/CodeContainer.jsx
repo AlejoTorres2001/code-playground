@@ -10,9 +10,8 @@ const CodeContainer = ({ title, logo, language }) => {
   };
   return (
     
-    <div className="flex flex-col bg-slate-600 border-2 border-gray-800">
-      <h1>{title}</h1>
-      <textarea className="focus:outline-none bg-slate-600 text-white grow" value={code} onChange={handleChange}></textarea>
+    <div className="flex flex-col bg-gray-600 font-mono border-2 border-gray-600 ">
+      <textarea className={`focus:outline-none bg-gray-600 font-mono text-white grow ${language}`} value={code} onChange={handleChange}></textarea>
     </div>
   );
 };

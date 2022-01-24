@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.grid {
+  display: grid;
+  grid-template-rows: 1fr 10px 1fr;
+  grid-template-columns: 1fr 10px 1fr;
+}
+
+.gutter-col {
+  grid-row: 1/-1;
+  cursor: col-resize;
+}
+
+.gutter-col-1 {
+  grid-column: 2;
+}
+
+.gutter-row {
+  grid-column: 1/-1;
+  cursor: row-resize;
+}
+
+.gutter-row-1 {
+  grid-row: 2;
+}
+.js {
+  background-image: url("/src/assets/js.svg");
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: 98% 95%;
+}
+.html {
+  background-image: url("/src/assets/html5.svg");
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: 98% 95%;
+}
+.css {
+  background-image: url("/src/assets/css3.svg");
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: 98% 95% ;
+}
