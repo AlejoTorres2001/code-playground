@@ -5,54 +5,53 @@ import {
   LogoutIcon,
   SaveAsIcon,
 } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <nav className="group z-10 w-[4rem] h-screen fixed bg-[#2D323C] hover:w-64 transition: duration-200 ease-in top-0">
       <ul className="list-none p-0 m-0 flex flex-col items-center h-full">
           <li>
-            <a href="#" className="flex items-center justify-center w-full h-full font-bold  uppercase mb-[1rem] text-center tracking-wide ">
+            <Link to="/" href="#" className="flex items-center justify-center w-full h-full font-bold  uppercase mb-[1rem] text-center tracking-wide ">
                 <span className="text-[#F7DF1E]">c</span>
                 <span className="text-[#E34F26]">o</span>
                 <span className="text-[#0C73B8]">d</span>
                 <span className="text-[#F7DF1E]">i</span>
                 <span className="text-[#E34F26]">f</span>
                 <span className="text-[#0C73B8]">y</span>
-            </a>
+            </Link>
           </li>
-        <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <a className="flex items-center h-[5rem] " href="">
+        <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in ">
+          <Link to="/" className="flex items-center h-[5rem] " href="">
             <HomeIcon color="#4F525B" width={"5rem"} height={"3rem"} className="m-4 btn-1" ></HomeIcon>
-             <span className="hidden ml-1 group-hover:block 
-             transition: delay-200 duration-200 ease-in-out text-[#C8C8C9]">Playground</span>
-          </a>
+             <Link to="/" className="hidden ml-1 group-hover:block text-[#C8C8C9] ">Playground</Link>
+          </Link>
         </li>
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <a className="flex items-center " href="">
+          <Link to="playgrounds" className="flex items-center " href="">
             <CollectionIcon color="#4F525B" className="m-4" width={"5rem"} height={"3rem"}></CollectionIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">My Playgrounds</span>
 
-          </a>
+          </Link>
         </li>
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <a className="flex items-center " href="">
+          <Link to="#"   className="flex items-center " href="">
             <SaveAsIcon color="#4F525B" className="m-4" width={"5rem"} height={"3rem"}></SaveAsIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Save Playground</span>
 
-          </a>
+          </Link>
         </li>
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <a className="flex items-center" href="">
+          <Link to="#" className="flex items-center" href="">
             <AdjustmentsIcon color="#4F525B" className="m-4" width={"5rem"} height={"3rem"}></AdjustmentsIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Settings</span>
 
-          </a>
+          </Link>
         </li>
         <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <a className="flex items-center" href="">
+          <Link to="/login" className="flex items-center" href="">
             <LogoutIcon color="#4F525B " className="m-4" width={"5rem"} height={"3rem"}></LogoutIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Log-Out</span>
-
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
