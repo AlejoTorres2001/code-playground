@@ -70,3 +70,17 @@
 
   color: #E34F26
 }
+@media only screen and (max-width: 600px){
+	.html::after{
+    width: 28px;
+    height: 28px;
+  }
+  .css::after{
+    width: 28px;
+    height: 28px;
+  }
+  .javascript::after{
+    width: 28px;
+    height: 28px;
+  }
+}

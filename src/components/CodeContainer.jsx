@@ -24,4 +24,3 @@ const CodeContainer = ({  language }) => {
 };
 
 export default CodeContainer;
- {/* <textarea className={`focus:outline-none bg-gray-600 font-mono text-white grow ${language}`} value={code} onChange={handleChange}></textarea> */}
