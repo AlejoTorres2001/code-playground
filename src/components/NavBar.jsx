@@ -27,7 +27,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <Link to="playgrounds" className="flex items-center " href="">
+          <Link to="/playgrounds" className="flex items-center " href="">
             <CollectionIcon color="#4F525B" className="m-4" width={"5rem"} height={"3rem"}></CollectionIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">My Playgrounds</span>
 

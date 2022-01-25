@@ -10,8 +10,9 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+          <Route path="/:id" element={<App/>}/> Route to load an existing playground + where to redirect  after saving
           <Route path="/" element={<App />} />
-          <Route path="playgrounds" element={<Playgrounds />} />
+          <Route path="/playgrounds" element={<Playgrounds />} />
         </Routes>
       </BrowserRouter>
     </Provider>
