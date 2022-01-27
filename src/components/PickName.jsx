@@ -80,7 +80,7 @@ const PickName = ({closeModal}) => {
             onChange={e=>setName(e.target.value)}    
             class="border h-5 border-gray-400 appearance-none rounded px-3 py-3  focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
             type="text"
-            autofocus
+            autoFocus
           />
         </div>
         <button onClick={closeModal} class="bg-indigo-500 px-4 py-2 rounded-md text-md text-white">
