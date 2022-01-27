@@ -43,4 +43,4 @@ const logOut = () => {
 };
 const auth = getAuth(app);
 const db = getFirestore(app);
-export  {app,signInWithGoogle,logOut,auth} ;
+export  {app,signInWithGoogle,logOut,auth,db} ;
