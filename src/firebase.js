@@ -8,6 +8,7 @@ import {addDoc,collection,getDocs,getFirestore,query, where} from "firebase/fire
 
 // Your web app's Firebase configuration
 const setConfig = () =>{
+  console.log(import.meta.env.MODE)
   if(import.meta.env.MODE === "development"){
     return  {
       apiKey: KEYS.API_KEY,
