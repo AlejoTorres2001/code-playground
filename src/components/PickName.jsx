@@ -30,7 +30,7 @@ const PickName = ({closeModal}) => {
   };
   const savePlayground = () => {
     
-    if (!name || name ==="") {
+    if (!name || name === "") {
       console.log("Pick a name!");
       return;
     }
@@ -54,6 +54,7 @@ const PickName = ({closeModal}) => {
       
   }
   else{
+    //create a new doc
     const playground = {
       owner: user.email,
       name: name,
