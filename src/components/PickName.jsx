@@ -53,10 +53,10 @@ const PickName = ({closeModal}) => {
           />
         </div>
         <button onClick={closeModal} class="bg-indigo-500 px-4 py-2 rounded-md text-md text-white">
-          Cancle
+          Cancel
         </button>
         <button
-          onClick={() => savePlayground()}
+          onClick={savePlayground}
           class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold"
         >
           Save
