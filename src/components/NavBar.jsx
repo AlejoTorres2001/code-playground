@@ -13,31 +13,14 @@ import { auth } from "../firebase";
 import { useSelector } from "react-redux";
 import {db}  from "../firebase.js" 
 import { addDoc, collection } from "firebase/firestore";
-const NavBar = () => {
-  const state = useSelector((state) => state);
+import PickName from "./PickName";
+const NavBar = ({openModal}) => {
   const [user, loading, error] = useAuthState(auth);
-  const isThereCode = () => {
-    return state.code.html !=="" || state.code.css !=="" || state.code.javascript !==""
-  }
-  const savePlayground = ()=>{
+  const pickName = ()=>{
     if(!user) {
       return 
     }
-    if (!isThereCode()) return
-
-    const playground = {
-      owner: user.email,
-      code:{
-          html:state.code.html,
-          css:state.code.css,
-          javascript:state.code.javascript,
-      }
-    }
-    addDoc(collection(db,"playgrounds"),playground).then(
-      (docRef)=>{
-        console.log(docRef)
-      }
-    )
+    openModal()
   }
   return (
     <nav className="group z-10 w-[4rem] h-screen fixed bg-[#2D323C] hover:w-64 transition: duration-200 ease-in top-0">
@@ -65,7 +48,7 @@ const NavBar = () => {
 
           </Link>
         </li>
-        <li onClick={()=>savePlayground()} className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
+        <li onClick={()=>pickName()} className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
           <Link to="#"   className="flex items-center " href="">
             <SaveAsIcon  color="#4F525B" className="m-4" width={"5rem"} height={"3rem"}></SaveAsIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Save Playground</span>

@@ -6,14 +6,18 @@ import NavBar from "./components/NavBar";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 import MobileNavBar from "./components/MobileNavBar";
 import Footer from "./components/Footer";
+import PickName from "./components/PickName";
+import { useState } from "react";
 
 function App() {
   const { height, width } = useWindowDimensions();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="scrollbar-hide">
+      {isOpen && <PickName closeModal={()=>setIsOpen(false)} />}
       <div className="flex">
-        {width > 1000 && <NavBar />}
-
+        {width > 1000 && <NavBar openModal={()=>setIsOpen(true)}/>}
+        
         <Split
           minSize={100}
           render={({ getGridProps, getGutterProps }) => (

@@ -8,7 +8,7 @@ const Playgrounds = () => {
   const [user, loading, error] = useAuthState(auth);
   const { height, width } = useWindowDimensions();
    return (
-    <div className="scrollbar-hide">
+    <div className="scrollbar-hide  bg-red-300">
       <div className="flex">
       {
         width > 1000  && (
@@ -18,6 +18,9 @@ const Playgrounds = () => {
           
           )
         }
+        <div className="grow w-screen h-screen ml-[4rem]  flex bg-[#4F525B]">
+          holaasdasd
+        </div>
       </div>
       {width <= 600 && <MobileNavBar />}
       <Footer></Footer>
