@@ -30,7 +30,7 @@ const PickName = ({closeModal}) => {
   };
   const savePlayground = () => {
     
-    if (!name || name ==="loading...") {
+    if (!name || name ==="") {
       console.log("Pick a name!");
       return;
     }
@@ -75,7 +75,7 @@ const PickName = ({closeModal}) => {
         <h1 class="text-xl mb-4 font-bold text-slate-500">Choose a name</h1>
         <div className="flex flex-col m-2 mb-4">
           <input
-            value={name || "loading..."}
+            value={name}
             onChange={e=>setName(e.target.value)}    
             class="border h-5 border-gray-400 appearance-none rounded px-3 py-3  focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
             type="text"
