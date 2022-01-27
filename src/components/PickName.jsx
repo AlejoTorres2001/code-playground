@@ -83,7 +83,7 @@ const PickName = ({closeModal}) => {
             autoFocus
           />
         </div>
-        <button onClick={closeModal} class="bg-indigo-500 px-4 py-2 rounded-md text-md text-white">
+        <button onClick={closeModal} className="bg-indigo-500 px-4 py-2 rounded-md text-md text-white">
           Cancel
         </button>
         <button
