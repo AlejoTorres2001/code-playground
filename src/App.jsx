@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 import MobileNavBar from "./components/MobileNavBar";
 import Footer from "./components/Footer";
+
 function App() {
   const { height, width } = useWindowDimensions();
   return (

@@ -5,14 +5,23 @@ import { Provider } from "react-redux";
 import store from "./state/store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Playgrounds from "./routes/Playgrounds";
+import { PrivateRoute } from "./components/PrivateRoute";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/:id" element={<App/>}/> Route to load an existing playground + where to redirect  after saving
+          <Route path="/:id" element={<App />} /> Route to load an existing
+          playground + where to redirect after saving
           <Route path="/" element={<App />} />
-          <Route path="/playgrounds" element={<Playgrounds />} />
+          <Route
+            path="/playgrounds"
+            element={
+              <PrivateRoute>
+                <Playgrounds />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

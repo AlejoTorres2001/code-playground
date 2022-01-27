@@ -4,9 +4,14 @@ import {
   CollectionIcon,
   LogoutIcon,
   SaveAsIcon,
+  LoginIcon,
 } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { logOut, signInWithGoogle } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 const NavBar = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <nav className="group z-10 w-[4rem] h-screen fixed bg-[#2D323C] hover:w-64 transition: duration-200 ease-in top-0">
       <ul className="list-none p-0 m-0 flex flex-col items-center h-full">
@@ -47,12 +52,22 @@ const NavBar = () => {
 
           </Link>
         </li>
-        <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in">
-          <Link to="/login" className="flex items-center" href="">
+        {user ?  (
+          <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in">
+          <Link to="#" onClick={()=>logOut()} className="flex items-center" href="">
             <LogoutIcon color="#4F525B " className="m-4" width={"5rem"} height={"3rem"}></LogoutIcon>
             <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Log-Out</span>
           </Link>
-        </li>
+        </li> 
+        )
+        :
+        <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in">
+          <Link to="#" onClick={()=>signInWithGoogle()} className="flex items-center" href="">
+            <LoginIcon color="#4F525B " className="m-4" width={"5rem"} height={"3rem"}></LoginIcon>
+            <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">Log-In</span>
+          </Link>
+        </li> 
+        }
       </ul>
     </nav>
   );
