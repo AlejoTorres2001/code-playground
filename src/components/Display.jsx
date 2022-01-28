@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 const Display = () => {
   const state = useSelector((state) => state);
   const makeHtml = () => {
@@ -19,11 +18,13 @@ const Display = () => {
     ${state.code.html}
     </body>
     </html>
-    `
-  }
-  return <div className="flex">
-      <iframe  className="outline-none  grow" srcDoc={makeHtml()}></iframe>
-  </div>;
+    `;
+  };
+  return (
+    <div className="flex">
+      <iframe className="outline-none  grow" srcDoc={makeHtml()}></iframe>
+    </div>
+  );
 };
 
 export default Display;
