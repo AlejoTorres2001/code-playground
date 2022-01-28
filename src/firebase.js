@@ -1,16 +1,28 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider,getAuth, signInWithPopup,signOut} from "firebase/auth";
-import {addDoc,collection,getDocs,getFirestore,query, where} from "firebase/firestore";
-//import KEYS from "./keys" //uncomment for dev 
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+//import KEYS from "./keys"; //uncomment for dev
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const setConfig = () =>{
-  console.log(import.meta.env.MODE)
-  if(import.meta.env.MODE === "development"){
-    return  {
+const setConfig = () => {
+  console.log(import.meta.env.MODE);
+  if (import.meta.env.MODE === "development") {
+    return {
       apiKey: KEYS.API_KEY,
       authDomain: KEYS.AUTH_DOMAIN,
       projectId: KEYS.PROJECT_ID,
@@ -18,9 +30,8 @@ const setConfig = () =>{
       messagingSenderId: KEYS.MESSAGING_SENDER_ID,
       appId: KEYS.APP_ID,
     };
-  }
-  else{
-    return  {
+  } else {
+    return {
       apiKey: import.meta.env.VITE_API_KEY,
       authDomain: import.meta.env.VITE_AUTH_DOMAIN,
       projectId: import.meta.env.VITE_PROJECT_ID,
@@ -29,8 +40,7 @@ const setConfig = () =>{
       appId: import.meta.env.VITE_APP_ID,
     };
   }
-}
-
+};
 
 // Initialize Firebase
 const app = initializeApp(setConfig());
@@ -59,4 +69,4 @@ const logOut = () => {
 };
 const auth = getAuth(app);
 const db = getFirestore(app);
-export  {app,signInWithGoogle,logOut,auth,db} ;
+export { app, signInWithGoogle, logOut, auth, db };
