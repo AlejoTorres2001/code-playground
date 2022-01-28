@@ -21,7 +21,7 @@ const Playgrounds = () => {
           <NavBar/>
           )
         }
-        <div className="grow w-screen h-screen ml-[4rem]  flex bg-[#4F525B]">
+        <div className=" w-screen h-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row">
         {loading && <span>Collection: Loading...</span>}
         {value && (
          value.docs.map((doc) => (
