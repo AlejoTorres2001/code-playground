@@ -14,8 +14,6 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
-
-
 function App() {
   const { height, width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);

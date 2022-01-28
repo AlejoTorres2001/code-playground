@@ -2,17 +2,19 @@ import { useNavigate } from "react-router-dom";
 
 import { useState } from 'react'
 
-const Playground = ({ doc }) => {
+const Playground = ({ doc,Icon,color }) => {
   const navigate = useNavigate();
+  console.log(color);
+  console.log(Icon);
   return (
-    <div className="flex flex-col bg-[#E34F26] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6 ">
-      <img classNameName="w-full" width={"400px"} alt="loading" />
+    <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6 ">
+      <Icon width={"5rem"} height={"5rem"}  className={`text-[${color}]`}></Icon>
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-1 text-center">
+        <div className="font-bold text-xl mb-1 text-center text-gray-300">
           {doc.data().name}
         </div>
       </div>
-      <div className="flex mr-2 ml-2 md:flex-row justify-center items-center  space-x-4 mt-14">
+      <div className="flex mr-2 ml-2 md:flex-row justify-center items-center  space-x-4 md:mt-9 mb-3">
         <button  
           onClick={() => {
             navigate(`/${doc.id}`);

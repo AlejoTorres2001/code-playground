@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 const Display = () => {
   const state = useSelector((state) => state);
+
+ 
+  
   const makeHtml = () => {
     return `
     <!DOCTYPE html>
@@ -21,7 +24,7 @@ const Display = () => {
     `;
   };
   return (
-    <div className="flex">
+    <div className="flex"   >
       <iframe className="outline-none  grow" srcDoc={makeHtml()}></iframe>
     </div>
   );

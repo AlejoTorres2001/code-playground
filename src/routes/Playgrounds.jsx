@@ -8,6 +8,15 @@ import {db} from "../firebase";
 import { collection, query, where } from "firebase/firestore";
 import { auth } from "../firebase";
 import Playground from "../components/Playground";
+import{CogIcon,BookmarkIcon,EyeIcon,CakeIcon,ChartBarIcon,BeakerIcon,BellIcon}  from"@heroicons/react/solid"
+const pickRandomIcon = ()=>{
+  const icons = [CogIcon,BookmarkIcon,EyeIcon,CakeIcon,ChartBarIcon,BeakerIcon,BellIcon];
+return icons[Math.floor(Math.random() * icons.length)];
+}
+const pickRandomColor = ()=>{
+  const colors = ["#F7DF1E","#E34F26","#0C73B8"];
+return colors[Math.floor(Math.random() * colors.length)];
+}
 const Playgrounds = () => {
   const [user, loading, error] = useAuthState(auth);
   const { height, width } = useWindowDimensions();
@@ -21,11 +30,11 @@ const Playgrounds = () => {
           <NavBar/>
           )
         }
-        <div className=" w-screen h-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row">
+        <div className="bg-img w-screen h-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row">
         {loading && <span>Collection: Loading...</span>}
         {value && (
          value.docs.map((doc) => (
-             <Playground doc={doc}></Playground>
+             <Playground doc={doc} Icon={pickRandomIcon()} color={pickRandomColor()}></Playground>
             ))
         )}
         </div>
