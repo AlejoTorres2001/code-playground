@@ -15,6 +15,7 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
 
+
 function App() {
   const { height, width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
@@ -46,9 +47,9 @@ function App() {
               }  bottom-0 `}
               {...getGridProps()}
             >
-              <CodeContainer language="html"></CodeContainer>
+              <CodeContainer  language="html"></CodeContainer>
               <CodeContainer language="css"></CodeContainer>
-              <CodeContainer language="javascript"></CodeContainer>
+              <CodeContainer  language="javascript"></CodeContainer>
               <Display></Display>
               <div />
               <div
