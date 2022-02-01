@@ -64,7 +64,7 @@ function App() {
           )}
         />
       </div>
-      {width <= 600 && <MobileNavBar />}
+      {width <= 600 && <MobileNavBar openModal={()=>setIsOpen(true)} />}
       <Footer></Footer>
     </div>
   );

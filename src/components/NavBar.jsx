@@ -48,7 +48,7 @@ const NavBar = ({ openModal }) => {
               color="#4F525B"
               width={"5rem"}
               height={"3rem"}
-              className="m-4 btn-1"
+              className="m-4"
             ></HomeIcon>
             <Link
               to="/"
