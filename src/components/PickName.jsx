@@ -72,7 +72,6 @@ const PickName = ({ closeModal }) => {
     }
     closeModal();
   };
-  console.log(playgroundInfo);
   return (
     <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-50">
       <div class="bg-white px-16 py-14 rounded-md text-center">
