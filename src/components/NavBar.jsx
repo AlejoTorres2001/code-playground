@@ -10,10 +10,6 @@ import { Link } from "react-router-dom";
 import { logOut, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { useSelector } from "react-redux";
-import { db } from "../firebase.js";
-import { addDoc, collection } from "firebase/firestore";
-import PickName from "./PickName";
 import { useLocation } from "react-router-dom";
 const NavBar = ({ openModal }) => {
   const location = useLocation();

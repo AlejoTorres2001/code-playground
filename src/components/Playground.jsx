@@ -1,7 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
-import { useState } from "react";
-
 const Playground = ({ doc, Icon, color }) => {
   const navigate = useNavigate();
   console.log(color);

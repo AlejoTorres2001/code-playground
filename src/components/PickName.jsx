@@ -1,7 +1,6 @@
 import { addDoc, collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
 import { useSelector } from "react-redux";
 import { auth, db } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
