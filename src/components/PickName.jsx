@@ -39,7 +39,7 @@ const PickName = ({ closeModal }) => {
       console.log("Add some code!");
       return;
     }
-    if (playgroundInfo?.owner !== user.email) {
+    if (playgroundInfo?.owner && playgroundInfo?.owner !== user.email) {
       console.log("You can't save playgrounds you don't own!");
       return;
     }
