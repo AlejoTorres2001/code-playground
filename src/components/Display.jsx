@@ -1,29 +1,17 @@
 import { useSelector } from "react-redux";
+import makeHtml from "../functions/makeHtml";
+import { useLocation } from "react-router-dom";
 const Display = () => {
   const state = useSelector((state) => state);
-
-  const makeHtml = () => {
-    return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <style>
-    ${state.code.css}
-    </style>
-    <head/>
-    <body>
-    <script>
-    ${state.code.javascript}
-    </script>
-    ${state.code.html}
-    </body>
-    </html>
-    `;
-  };
+  const location = useLocation();
   return (
     <div className="flex">
-      <iframe className="outline-none  grow" srcDoc={makeHtml()}></iframe>
+      <iframe
+        className={`outline-none  ${
+          location.pathname.includes("fullscreen") && "w-screen h-screen"
+        } grow  bg-red-400`}
+        srcDoc={makeHtml(state)}
+      ></iframe>
     </div>
   );
 };
