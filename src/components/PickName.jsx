@@ -92,28 +92,28 @@ const PickName = ({ closeModal }) => {
   return (
     <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-50">
        <ToastContainer />
-      <div class="bg-white px-16 py-14 rounded-md text-center">
-        <h1 class="text-xl mb-4 font-bold text-slate-500">Choose a name</h1>
+      <div class="bg-[#2D323C] px-16 py-14 rounded-md text-center">
+        <h1 class="text-xl mb-4 font-bold text-[#C8C8C9]">Choose a name</h1>
         <div className="flex flex-col m-2 mb-4">
           <input
             value={playgroundInfo.name || ""}
             onChange={(e) =>
               setPlaygroundInfo({ ...playgroundInfo, name: e.target.value })
             }
-            className="border h-5 border-gray-400 appearance-none rounded px-3 py-3  focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+            className="border border-[#C8C8C9]  h-5  appearance-none rounded px-3 py-3  focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600 bg-[#2D323C]"
             type="text"
             autoFocus
           />
         </div>
         <button
           onClick={closeModal}
-          className="bg-indigo-500 px-4 py-2 rounded-md text-md text-white"
+          className="border border-[#C8C8C9] bg-[#2D323C] px-4 py-2 rounded-md text-md text-[#C8C8C9] hover:text-white"
         >
          Cancel
         </button>
         <button
           onClick={savePlayground}
-          class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold"
+          class="bg-[#F7DF1E] px-7 py-2 ml-2 rounded-md text-md text-[#C8C8C9] font-semibold hover:text-gray-800"
         >
           {params?.id? "Update" : "Save" }
         </button>
