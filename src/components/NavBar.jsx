@@ -5,15 +5,16 @@ import {
   LogoutIcon,
   SaveAsIcon,
   LoginIcon,
+  ArrowsExpandIcon,
 } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { logOut, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 const NavBar = ({ openModal }) => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   const openPickNameModal = () => {
     if (!user) {
@@ -21,6 +22,11 @@ const NavBar = ({ openModal }) => {
     }
     openModal();
   };
+  const openFullScreen = () => {
+    //open ifreame in new window
+    navigate(`/fullscreen`);
+
+  }
   return (
     <nav className="group z-10 w-[4rem] h-screen fixed bg-[#2D323C] hover:w-64 transition: duration-200 ease-in top-0">
       <ul className="list-none p-0 m-0 flex flex-col items-center h-full">
@@ -54,6 +60,23 @@ const NavBar = ({ openModal }) => {
             </Link>
           </Link>
         </li>
+        <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in ">
+          <Link to="/fullscreen" className="flex items-center h-[5rem] " href="">
+            <ArrowsExpandIcon
+              color="#4F525B"
+              width={"5rem"}
+              height={"3rem"}
+              className="m-4"
+            ></ArrowsExpandIcon>
+            <Link
+              to="/fullscreen"
+              className="hidden ml-1 group-hover:block text-[#C8C8C9] "
+            >
+              Full-Screen
+            </Link>
+          </Link>
+        </li>
+      {/* <button onClick={openFullScreen}>hola</button> */}
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
           <Link to="/playgrounds" className="flex items-center " href="">
             <CollectionIcon

@@ -6,6 +6,7 @@ import store from "./state/store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Playgrounds from "./routes/Playgrounds";
 import { PrivateRoute } from "./components/PrivateRoute";
+import FullScreen from "./routes/FullScreen";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -21,6 +22,8 @@ ReactDOM.render(
               </PrivateRoute>
             }
           />
+          <Route path="/fullscreen" element={<FullScreen />} />
+
         </Routes>
       </BrowserRouter>
     </Provider>

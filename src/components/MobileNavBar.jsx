@@ -1,4 +1,4 @@
-import { AdjustmentsIcon, CollectionIcon, HomeIcon, LoginIcon, LogoutIcon, SaveAsIcon } from "@heroicons/react/outline";
+import { AdjustmentsIcon, ArrowsExpandIcon, CollectionIcon, HomeIcon, LoginIcon, LogoutIcon, SaveAsIcon } from "@heroicons/react/outline";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
 import { auth, logOut, signInWithGoogle } from "../firebase";
@@ -23,8 +23,9 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></HomeIcon>
           </Link>
-         <span className="text-[#C8C8C9]">Home</span>
+         <span className="text-[#C8C8C9] text-sm">Home</span>
         </li>
+        
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1">
           <Link to="/playgrounds" className="flex items-center h-[2rem]" href="">
             <CollectionIcon
@@ -34,7 +35,7 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></CollectionIcon>
           </Link>
-         <span className="text-[#C8C8C9]">Playgrounds</span>
+         <span className="text-[#C8C8C9] text-sm">Playgrounds</span>
 
         </li>
         {location.pathname !== "/playgrounds" &&
@@ -51,7 +52,7 @@ const MobileNavBar = ({openModal}) => {
                   height={"2rem"}
                 ></SaveAsIcon>
               </Link>
-         <span className="text-[#C8C8C9]">Save</span>
+         <span className="text-[#C8C8C9] text-sm">Save</span>
               
             </li>
           )}
@@ -64,8 +65,18 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></AdjustmentsIcon>
           </Link>
-         <span className="text-[#C8C8C9]">Settings</span>
+         <span className="text-[#C8C8C9] text-sm">Settings</span>
 
+        </li>
+        <li className="w-full flex flex-col items-center justify-center hover:bg-[#1E1E1E] transition: duration-200 ease-in space-x-1">
+          <Link to="/fullscreen" className="flex items-center h-[2rem] " href="">
+            <ArrowsExpandIcon
+              color="#4F525B"
+              width={"2rem"}
+              height={"2rem"}
+            ></ArrowsExpandIcon>
+          </Link>
+         <span className="text-[#C8C8C9] text-sm">Full-Screen</span>
         </li>
         {user ? (
           <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1">
@@ -82,7 +93,7 @@ const MobileNavBar = ({openModal}) => {
                 height={"2rem"}
               ></LogoutIcon>
             </Link>
-         <span className="text-[#C8C8C9]">Log-Out</span>
+         <span className="text-[#C8C8C9] text-sm">Log-Out</span>
 
           </li>
         ) : (
