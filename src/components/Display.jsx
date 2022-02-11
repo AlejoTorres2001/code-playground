@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import makeHtml from "../functions/makeHtml";
 import { useLocation } from "react-router-dom";
-const Display = () => {
+const Display = ({reference}) => {
   const state = useSelector((state) => state);
   const location = useLocation();
   return (
     <div className="flex">
       <iframe
+      ref={reference}
         className={`outline-none  ${
           location.pathname.includes("fullscreen") && "w-screen h-screen"
         } grow  `}
