@@ -4,13 +4,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { auth, db } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
+import { useScreenshot } from "use-react-screenshot";
 const PickName = ({ closeModal }) => {
   const navigate = useNavigate();
   const params = useParams();
   const [playgroundInfo, setPlaygroundInfo] = useState({});
   const state = useSelector((state) => state);
   const [user, loading, error] = useAuthState(auth);
+  const [image, takeScreenshot] = useScreenshot();
+  const iframe = document.getElementsByTagName("iframe");
+  const screen = iframe[0]?.contentDocument?.body;
+  const getImage = () => takeScreenshot(screen);
   useEffect(() => {
+    getImage();
     if (params?.id) {
       const playground = getDoc(doc(db, "playgrounds", params.id));
       playground.then((doc) => {
@@ -21,7 +27,6 @@ const PickName = ({ closeModal }) => {
       });
     }
   }, []);
-
   const isThereCode = () => {
     return (
       state.code.html !== "" ||
@@ -42,6 +47,7 @@ const PickName = ({ closeModal }) => {
       console.log("You can't save playgrounds you don't own!");
       return;
     }
+
     if (params?.id) {
       //update doc
       try {
@@ -50,6 +56,7 @@ const PickName = ({ closeModal }) => {
           "code.html": state.code.html,
           "code.css": state.code.css,
           "code.javascript": state.code.javascript,
+          image: image || "",
         });
       } catch (e) {
         console.log(e);
@@ -64,6 +71,7 @@ const PickName = ({ closeModal }) => {
           css: state.code.css,
           javascript: state.code.javascript,
         },
+        image: image || "",
       };
       addDoc(collection(db, "playgrounds"), playground).then((docRef) => {
         navigate(`/${docRef.id}`);
