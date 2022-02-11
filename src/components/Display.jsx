@@ -9,7 +9,7 @@ const Display = () => {
       <iframe
         className={`outline-none  ${
           location.pathname.includes("fullscreen") && "w-screen h-screen"
-        } grow  bg-red-400`}
+        } grow  `}
         srcDoc={makeHtml(state)}
       ></iframe>
     </div>

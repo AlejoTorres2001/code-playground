@@ -23,7 +23,7 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></HomeIcon>
           </Link>
-         <span className="text-[#C8C8C9] text-sm">Home</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Home</span>
         </li>
         
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1">
@@ -35,7 +35,7 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></CollectionIcon>
           </Link>
-         <span className="text-[#C8C8C9] text-sm">Playgrounds</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Playgrounds</span>
 
         </li>
         {location.pathname !== "/playgrounds" &&
@@ -52,7 +52,7 @@ const MobileNavBar = ({openModal}) => {
                   height={"2rem"}
                 ></SaveAsIcon>
               </Link>
-         <span className="text-[#C8C8C9] text-sm">Save</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Save</span>
               
             </li>
           )}
@@ -65,7 +65,7 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></AdjustmentsIcon>
           </Link>
-         <span className="text-[#C8C8C9] text-sm">Settings</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Settings</span>
 
         </li>
         <li className="w-full flex flex-col items-center justify-center hover:bg-[#1E1E1E] transition: duration-200 ease-in space-x-1">
@@ -76,7 +76,7 @@ const MobileNavBar = ({openModal}) => {
               height={"2rem"}
             ></ArrowsExpandIcon>
           </Link>
-         <span className="text-[#C8C8C9] text-sm">Full-Screen</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Full-Screen</span>
         </li>
         {user ? (
           <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1">
@@ -93,7 +93,7 @@ const MobileNavBar = ({openModal}) => {
                 height={"2rem"}
               ></LogoutIcon>
             </Link>
-         <span className="text-[#C8C8C9] text-sm">Log-Out</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Log-Out</span>
 
           </li>
         ) : (
@@ -111,7 +111,7 @@ const MobileNavBar = ({openModal}) => {
                 height={"2rem"}
               ></LoginIcon>
             </Link>
-         <span className="text-[#C8C8C9]">Log-In</span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">Log-In</span>
 
           </li>
         )}
