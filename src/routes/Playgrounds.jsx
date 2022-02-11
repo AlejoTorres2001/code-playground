@@ -8,31 +8,6 @@ import { db } from "../firebase";
 import { collection, query, where } from "firebase/firestore";
 import { auth } from "../firebase";
 import Playground from "../components/Playground";
-import {
-  CogIcon,
-  BookmarkIcon,
-  EyeIcon,
-  CakeIcon,
-  ChartBarIcon,
-  BeakerIcon,
-  BellIcon,
-} from "@heroicons/react/solid";
-const pickRandomIcon = () => {
-  const icons = [
-    CogIcon,
-    BookmarkIcon,
-    EyeIcon,
-    CakeIcon,
-    ChartBarIcon,
-    BeakerIcon,
-    BellIcon,
-  ];
-  return icons[Math.floor(Math.random() * icons.length)];
-};
-const pickRandomColor = () => {
-  const colors = ["#F7DF1E", "#E34F26", "#0C73B8"];
-  return colors[Math.floor(Math.random() * colors.length)];
-};
 const Playgrounds = () => {
   const [user, loading, error] = useAuthState(auth);
   const { height, width } = useWindowDimensions();
@@ -51,8 +26,6 @@ const Playgrounds = () => {
             value.docs.map((doc) => (
               <Playground
                 doc={doc}
-                Icon={pickRandomIcon()}
-                color={pickRandomColor()}
               ></Playground>
             ))}
         </div>
