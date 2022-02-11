@@ -14,7 +14,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import KEYS from "./keys"; //uncomment for dev
+//import KEYS from "./keys"; //uncomment for dev
 
 // Your web app's Firebase configuration
 const setConfig = () => {
