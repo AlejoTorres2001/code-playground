@@ -1,10 +1,12 @@
 import { addDoc, collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { auth, db } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { useScreenshot } from "use-react-screenshot";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const PickName = ({ closeModal }) => {
   const navigate = useNavigate();
   const params = useParams();
@@ -15,6 +17,7 @@ const PickName = ({ closeModal }) => {
   const iframe = document.getElementsByTagName("iframe");
   const screen = iframe[0]?.contentDocument?.body;
   const getImage = () => takeScreenshot(screen);
+  console.log(params)
   useEffect(() => {
     getImage();
     if (params?.id) {
@@ -35,16 +38,23 @@ const PickName = ({ closeModal }) => {
     );
   };
   const savePlayground = () => {
-    if (!playgroundInfo.name || playgroundInfo.name === "") {
-      console.log("Pick a name!");
-      return;
+    if (!playgroundInfo.name || playgroundInfo.name === "" ) {
+      toast("Please enter a name for your playground", {
+        type:"warning"
+      });
+      return
+      
     }
     if (!isThereCode()) {
-      console.log("Add some code!");
+      toast("Please enter some code", {
+        type:"error"
+      })
       return;
     }
     if (playgroundInfo?.owner && playgroundInfo?.owner !== user.email) {
-      console.log("You can't save playgrounds you don't own!");
+      toast("You are not the owner of this playground", {
+        type:"error"
+      })
       return;
     }
 
@@ -57,7 +67,7 @@ const PickName = ({ closeModal }) => {
           "code.css": state.code.css,
           "code.javascript": state.code.javascript,
           image: image || "",
-        });
+        })
       } catch (e) {
         console.log(e);
       }
@@ -81,11 +91,12 @@ const PickName = ({ closeModal }) => {
   };
   return (
     <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-50">
+       <ToastContainer />
       <div class="bg-white px-16 py-14 rounded-md text-center">
         <h1 class="text-xl mb-4 font-bold text-slate-500">Choose a name</h1>
         <div className="flex flex-col m-2 mb-4">
           <input
-            value={playgroundInfo.name}
+            value={playgroundInfo.name || ""}
             onChange={(e) =>
               setPlaygroundInfo({ ...playgroundInfo, name: e.target.value })
             }
@@ -98,13 +109,13 @@ const PickName = ({ closeModal }) => {
           onClick={closeModal}
           className="bg-indigo-500 px-4 py-2 rounded-md text-md text-white"
         >
-          Cancel
+         Cancel
         </button>
         <button
           onClick={savePlayground}
           class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold"
         >
-          Save
+          {params?.id? "Update" : "Save" }
         </button>
       </div>
     </div>
