@@ -4,8 +4,8 @@ const Playground = ({ doc, Icon, color }) => {
   console.log(color);
   console.log(Icon);
   return (
-    <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6 ">
-      <Icon width={"5rem"} height={"5rem"} className={`text-[${color}]`}></Icon>
+    <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
+            <img src={doc.data().image} width={"150px"} height={"120px"} className="my-2"></img>
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-1 text-center text-gray-300">
           {doc.data().name}
@@ -20,7 +20,7 @@ const Playground = ({ doc, Icon, color }) => {
         >
           Open Playground
         </button>
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 rounded inline-flex items-center text-xs md:text-sm ">
+        <button className=" outline outline-1 outline-gray-300 hover:bg-gray-800 text-gray-300 font-bold py-2 px-2 rounded inline-flex items-center text-xs md:text-sm ">
           <svg
             className="fill-current w-2 h-2 md:w-4 md:h-4 mr-2"
             xmlns="http://www.w3.org/2000/svg"
