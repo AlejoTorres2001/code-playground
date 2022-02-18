@@ -25,7 +25,7 @@ const Playgrounds = () => {
           {value &&
             value.docs.map((doc) => (
               <Playground
-                doc={doc}
+              document={doc}
               ></Playground>
             ))}
         </div>
