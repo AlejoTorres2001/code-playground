@@ -1,23 +1,28 @@
 import { addDoc, collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { auth, db } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { useScreenshot } from "use-react-screenshot";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { validatePlayground } from "../functions/validatePlayground";
 const PickName = ({ closeModal }) => {
+  //router
   const navigate = useNavigate();
   const params = useParams();
+  //state-redux
   const [playgroundInfo, setPlaygroundInfo] = useState({});
   const state = useSelector((state) => state);
+  //session
   const [user, loading, error] = useAuthState(auth);
+  //screen capture
   const [image, takeScreenshot] = useScreenshot();
   const iframe = document.getElementsByTagName("iframe");
   const screen = iframe[0]?.contentDocument?.body;
   const getImage = () => takeScreenshot(screen);
-  console.log(params)
+
   useEffect(() => {
     getImage();
     if (params?.id) {
@@ -30,77 +35,76 @@ const PickName = ({ closeModal }) => {
       });
     }
   }, []);
-  const isThereCode = () => {
-    return (
-      state.code.html !== "" ||
-      state.code.css !== "" ||
-      state.code.javascript !== ""
-    );
-  };
-  const savePlayground = () => {
-    if (!playgroundInfo.name || playgroundInfo.name === "" ) {
-      toast("Please enter a name for your playground", {
-        type:"warning"
-      });
-      return
-      
-    }
-    if (!isThereCode()) {
-      toast("Please enter some code", {
-        type:"error"
-      })
-      return;
-    }
-    if (playgroundInfo?.owner && playgroundInfo?.owner !== user.email) {
-      toast("You are not the owner of this playground", {
-        type:"error"
-      })
-      return;
-    }
 
-    if (params?.id) {
-      //update doc
-      try {
-        updateDoc(doc(db, `playgrounds`, params.id), {
-          name: playgroundInfo?.name,
-          "code.html": state.code.html,
-          "code.css": state.code.css,
-          "code.javascript": state.code.javascript,
-          image: image || "",
-        })
-      } catch (e) {
-        console.log(e);
+  const updatePlayground = () => {
+    try {
+      //updates existing playground
+      const errors = validatePlayground(
+        state.code,
+        playgroundInfo?.name,
+        playgroundInfo?.owner,
+        user
+      );
+      if (errors.length > 0) {
+        errors.forEach((error) => {
+          toast.error(error);
+        });
+        return;
       }
-    } else {
-      //create a new doc
-      const playground = {
-        owner: user.email,
+      updateDoc(doc(db, `playgrounds`, params.id), {
         name: playgroundInfo?.name,
-        code: {
-          html: state.code.html,
-          css: state.code.css,
-          javascript: state.code.javascript,
-        },
+        "code.html": state.code.html,
+        "code.css": state.code.css,
+        "code.javascript": state.code.javascript,
         image: image || "",
-      };
-      addDoc(collection(db, "playgrounds"), playground).then((docRef) => {
-        navigate(`/${docRef.id}`);
       });
+    } catch (e) {
+      console.log(e);
     }
     closeModal();
   };
+  const savePlayground = () => {
+    const errors = validatePlayground(
+      state.code,
+      playgroundInfo?.name,
+      playgroundInfo?.owner,
+      user
+    );
+    if (errors.length > 0) {
+      errors.forEach((error) => {
+        toast.error(error);
+      });
+      return;
+    }
+    //create a new doc
+    const playground = {
+      owner: user.email,
+      name: playgroundInfo?.name,
+      code: {
+        html: state.code.html,
+        css: state.code.css,
+        javascript: state.code.javascript,
+      },
+      image: image || "",
+    };
+    addDoc(collection(db, "playgrounds"), playground).then((docRef) => {
+      navigate(`/${docRef.id}`);
+    });
+    closeModal();
+  };
+
   return (
-    <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-50">
-       <ToastContainer />
-      <div class="bg-[#2D323C] px-16 py-14 rounded-md text-center">
-        <h1 class="text-xl mb-4 font-bold text-[#C8C8C9]">Choose a name</h1>
+    <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-50">
+      <ToastContainer />
+      <div className="bg-[#2D323C] px-16 py-14 rounded-md text-center">
+        <h1 className="text-xl mb-4 font-bold text-[#C8C8C9]">Choose a name</h1>
         <div className="flex flex-col m-2 mb-4">
           <input
             value={playgroundInfo.name || ""}
             onChange={(e) =>
               setPlaygroundInfo({ ...playgroundInfo, name: e.target.value })
             }
-            className="border border-[#C8C8C9]  h-5  appearance-none rounded px-3 py-3  focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600 bg-[#2D323C]"
+            className="border border-[#C8C8C9] text-[#C8C8C9] h-5  appearance-none rounded px-3 py-3  focus:outline-none active:outline-none bg-[#2D323C]"
             type="text"
             autoFocus
           />
@@ -109,13 +113,13 @@ const PickName = ({ closeModal }) => {
           onClick={closeModal}
           className="border border-[#C8C8C9] bg-[#2D323C] px-4 py-2 rounded-md text-md text-[#C8C8C9] hover:text-white"
         >
-         Cancel
+          Cancel
         </button>
         <button
-          onClick={savePlayground}
-          class="bg-[#F7DF1E] px-7 py-2 ml-2 rounded-md text-md text-[#C8C8C9] font-semibold hover:text-gray-800"
+          onClick={params?.id ? updatePlayground : savePlayground}
+          className="bg-[#E34F26] px-7 py-2 ml-2 rounded-md text-md text-[#C8C8C9] font-semibold hover:text-gray-800"
         >
-          {params?.id? "Update" : "Save" }
+          {params?.id ? "Update" : "Save"}
         </button>
       </div>
     </div>
