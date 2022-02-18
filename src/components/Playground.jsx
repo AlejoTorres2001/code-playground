@@ -13,16 +13,14 @@ const Playground = ({ doc }) => {
     <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
       <img
         src={doc.data().image}
-        width={"150px"}
-        height={"120px"}
-        className="my-2"
+        className="mt-2 object-cover float-left w-[90%] h-[100px] md:h-[110px]"
       ></img>
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-1 text-center text-gray-300">
+      <div className="px-6 py-2 md:py-4">
+        <div className="font-bold text-xl text-center text-gray-300">
           {doc.data().name}
         </div>
       </div>
-      <div className="flex mr-2 ml-2 md:flex-row justify-center items-center  space-x-4 md:mt-9 mb-3">
+      <div className="flex md:mt-2 mr-2 ml-2 justify-center items-center  space-x-4 ">
         <button
           onClick={() => {
             navigate(`/${doc.id}`);
