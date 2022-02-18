@@ -1,8 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { saveAs } from "file-saver";
 import makeHtml from "../functions/makeHtml";
+import { actionCreators } from "../state";
+import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
 const Playground = ({ doc }) => {
+  //router
   const navigate = useNavigate();
+  //state-redux
+  const dispatch = useDispatch();
+  const { setCode } = bindActionCreators(actionCreators, dispatch);
+
+  const cleanCode=()=>{
+    setCode("", "html");
+    setCode("", "css");
+    setCode("", "javascript");
+  }
   const saveFiles = () => {
     var blob = new Blob([makeHtml(doc.data())], {
       type: "text/plain;charset=utf-8",
@@ -23,6 +36,7 @@ const Playground = ({ doc }) => {
       <div className="flex md:mt-2 mr-2 ml-2 justify-center items-center  space-x-4 ">
         <button
           onClick={() => {
+            cleanCode()
             navigate(`/${doc.id}`);
           }}
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 rounded inline-flex items-center text-xs md:text-sm "
@@ -45,10 +59,3 @@ const Playground = ({ doc }) => {
 };
 
 export default Playground;
-
-{
-  /* <div classNameName="m-3" key={doc.id}>
-      <h1>{doc.data().name}</h1>
-      
-    </div> */
-}

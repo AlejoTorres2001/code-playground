@@ -10,32 +10,42 @@ import PickName from "./components/PickName";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
 function App() {
+  //dimensions hook
   const { height, width } = useWindowDimensions();
+  //state
   const [isOpen, setIsOpen] = useState(false);
+  //router
   const params = useParams();
+  //state-redux
+  const code = useSelector((state) => state.code);
   const dispatch = useDispatch();
   const { setCode } = bindActionCreators(actionCreators, dispatch);
+  
+  const isCodeStateEmpty = () => {
+    return code.html === "" && code.css === "" && code.javascript === "";
+  };
   useEffect(() => {
-    if(params?.id){
-      const playground = getDoc(doc(db,"playgrounds",params.id));
-      playground.then(doc=>{
+    if (params?.id && isCodeStateEmpty()) {
+      //load the code from the database
+      const playground = getDoc(doc(db, "playgrounds", params.id));
+      playground.then((doc) => {
         setCode(doc?.data()?.code?.html, "html");
         setCode(doc?.data()?.code?.css, "css");
         setCode(doc?.data()?.code?.javascript, "javascript");
-      })
+      });
     }
   }, []);
   return (
     <div className="scrollbar-hide">
-      {isOpen && <PickName closeModal={()=>setIsOpen(false)} />}
+      {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
       <div className="flex">
-        {width > 1000 && <NavBar openModal={()=>setIsOpen(true)}/>}
-        
+        {width > 1000 && <NavBar openModal={() => setIsOpen(true)} />}
+
         <Split
           minSize={100}
           render={({ getGridProps, getGutterProps }) => (
@@ -45,9 +55,9 @@ function App() {
               }  bottom-0 `}
               {...getGridProps()}
             >
-              <CodeContainer  language="html"></CodeContainer>
+              <CodeContainer language="html"></CodeContainer>
               <CodeContainer language="css"></CodeContainer>
-              <CodeContainer  language="javascript"></CodeContainer>
+              <CodeContainer language="javascript"></CodeContainer>
               <Display></Display>
               <div />
               <div
@@ -64,7 +74,7 @@ function App() {
           )}
         />
       </div>
-      {width <= 600 && <MobileNavBar openModal={()=>setIsOpen(true)} />}
+      {width <= 600 && <MobileNavBar openModal={() => setIsOpen(true)} />}
       <Footer></Footer>
     </div>
   );
