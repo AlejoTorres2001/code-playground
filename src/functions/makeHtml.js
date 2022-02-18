@@ -5,14 +5,14 @@ export default function  makeHtml(state)  {
     <head>
     <meta charset="UTF-8" />
     <style>
-    ${state.code.css}
+    ${state.code?.css}
     </style>
     <head/>
     <body>
     <script>
-    ${state.code.javascript}
+    ${state.code?.javascript}
     </script>
-    ${state.code.html}
+    ${state.code?.html}
     </body>
     </html>
     `;

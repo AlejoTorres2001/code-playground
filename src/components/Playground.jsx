@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom";
-const Playground = ({ doc, Icon, color }) => {
+import { saveAs } from "file-saver";
+import makeHtml from "../functions/makeHtml";
+const Playground = ({ doc }) => {
   const navigate = useNavigate();
-  console.log(color);
-  console.log(Icon);
+  const saveFiles = () => {
+    var blob = new Blob([makeHtml(doc.data())], {
+      type: "text/plain;charset=utf-8",
+    });
+    saveAs(blob, `${doc.data().name}.html`);
+  };
   return (
     <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
-            <img src={doc.data().image} width={"150px"} height={"120px"} className="my-2"></img>
+      <img
+        src={doc.data().image}
+        width={"150px"}
+        height={"120px"}
+        className="my-2"
+      ></img>
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-1 text-center text-gray-300">
           {doc.data().name}
@@ -28,7 +39,7 @@ const Playground = ({ doc, Icon, color }) => {
           >
             <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
           </svg>
-          <span>Download</span>
+          <span onClick={saveFiles}>Download</span>
         </button>
       </div>
     </div>
