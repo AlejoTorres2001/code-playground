@@ -40,7 +40,7 @@ const Playground = ({ document }) => {
         src={document.data().image}
         className="md:mt-1 object-cover float-left w-[90%] h-[100px] md:h-[110px]"
       ></img>
-      <div className="px-6 py-1 md:py-4">
+      <div className="px-6 py-6 md:py-4">
         <div className="font-bold text-xl text-center text-gray-300">
           {document.data().name}
         </div>
