@@ -1,10 +1,20 @@
 import { AdjustmentsIcon, ArrowsExpandIcon, CollectionIcon, HomeIcon, LoginIcon, LogoutIcon, SaveAsIcon } from "@heroicons/react/outline";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import { auth, logOut, signInWithGoogle } from "../firebase";
+import { actionCreators } from "../state";
 
 const MobileNavBar = ({openModal}) => {
+  //state-redux
+  const code = useSelector((state) => state.code);
+  const dispatch = useDispatch();
+  const { setCode } = bindActionCreators(actionCreators, dispatch);
+  //react-router
   const location = useLocation();
+  const navigate =   useNavigate()
+  //firebase
   const [user, loading, error] = useAuthState(auth);
   const openPickNameModal = () => {
     if (!user) {
@@ -12,18 +22,24 @@ const MobileNavBar = ({openModal}) => {
     }
     openModal();
   };
+  const goToNewPlayground = () => {
+    setCode("", "html");
+    setCode("", "css");
+    setCode("", "javascript");
+    navigate("/");
+  }
 
   return <nav className="w-screen bg-[#2D323C] flex items-center justify-between">
     <ul className="flex grow items-center justify-center">
-    <li className="w-full flex flex-col items-center justify-center hover:bg-[#1E1E1E] transition: duration-200 ease-in space-x-1">
-          <Link to="/" className="flex items-center h-[2rem] " href="">
+    <li className="w-full flex flex-col items-center justify-center hover:bg-[#1E1E1E] transition: duration-200 ease-in space-x-1" onClick={goToNewPlayground}>
+          <span  className="flex items-center h-[2rem] " href="">
             <HomeIcon
               color="#4F525B"
               width={"2rem"}
               height={"2rem"}
             ></HomeIcon>
-          </Link>
-         <span className="text-[#C8C8C9] text-[0.6rem]">Home</span>
+          </span>
+         <span className="text-[#C8C8C9] text-[0.6rem]">New Playground</span>
         </li>
         
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1">

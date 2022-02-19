@@ -7,15 +7,27 @@ import {
   LoginIcon,
   ArrowsExpandIcon,
 } from "@heroicons/react/outline";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logOut, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { useLocation,useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../state";
 const NavBar = ({ openModal }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
+  const code = useSelector((state) => state.code);
+  const dispatch = useDispatch();
+  const { setCode } = bindActionCreators(actionCreators, dispatch);
+  const goToNewPlayground = () => {
+    setCode("", "html");
+    setCode("", "css");
+    setCode("", "javascript");
+    navigate("/");
+  }
   const openPickNameModal = () => {
     if (!user) {
       return;
@@ -44,21 +56,22 @@ const NavBar = ({ openModal }) => {
             <span className="text-[#0C73B8]">y</span>
           </Link>
         </li>
-        <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in ">
-          <Link to="/" className="flex items-center h-[5rem] " href="">
+        <li onClick={goToNewPlayground} className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in ">
+          <span  className="flex items-center h-[5rem] " href="blank">
             <HomeIcon
               color="#4F525B"
               width={"5rem"}
               height={"3rem"}
               className="m-4"
             ></HomeIcon>
-            <Link
-              to="/"
+            <span
+            href="#"
+            
               className="hidden ml-1 group-hover:block text-[#C8C8C9] "
             >
-              Playground
-            </Link>
-          </Link>
+              New Playground
+            </span>
+          </span>
         </li>
         <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in ">
           <Link to="/fullscreen" className="flex items-center h-[5rem] " href="">
