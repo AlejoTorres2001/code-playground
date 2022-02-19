@@ -117,7 +117,7 @@ const PickName = ({ closeModal }) => {
         </button>
         <button
           onClick={params?.id ? updatePlayground : savePlayground}
-          className="bg-[#E34F26] px-7 py-2 ml-2 rounded-md text-md text-[#C8C8C9] font-semibold hover:text-gray-800"
+          className="bg-green-700 px-7 py-2 ml-2 rounded-md text-md text-gray-800  font-semibold hover:text-[#C8C8C9] hover:bg-green-600"
         >
           {params?.id ? "Update" : "Save"}
         </button>
