@@ -8,25 +8,37 @@ import { db } from "../firebase";
 import { collection, query, where } from "firebase/firestore";
 import { auth } from "../firebase";
 import Playground from "../components/Playground";
+import { ExclamationIcon } from "@heroicons/react/outline";
+import CreatePlaygroundButton from "../components/CreatePlaygroundButton";
 const Playgrounds = () => {
+  //firebase
   const [user, loading, error] = useAuthState(auth);
-  const { height, width } = useWindowDimensions();
   const q = query(
     collection(db, "playgrounds"),
     where("owner", "==", user?.email || "")
   );
   const [value, loadingCollection, errorCollection] = useCollection(q);
+  //width hook
+  const { height, width } = useWindowDimensions();
   return (
     <div className="scrollbar-hide  bg-red-300">
       <div className="flex">
         {width > 1000 && <NavBar />}
         <div className="bg-img w-screen h-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row">
+          {value?.docs.length === 0 && (
+            <div className="bg-[#2D323C]  h-1/5 w-2/4 flex flex-col justify-center items-center rounded-md shadow-md">
+              <ExclamationIcon className="text-[#F7DF1E] w-[3rem] h-[3rem]"></ExclamationIcon>
+              <h1 className="text-xl text-center text-white ">
+                Ups! Looks like you don't have playgrounds yet...
+              </h1>
+              <h2 className="text-lg text-white">What are you waiting for!</h2>
+              <CreatePlaygroundButton />
+            </div>
+          )}
           {loading && <span>Collection: Loading...</span>}
           {value &&
             value.docs.map((doc) => (
-              <Playground
-              document={doc}
-              ></Playground>
+              <Playground document={doc} key={doc.id}></Playground>
             ))}
         </div>
       </div>

@@ -82,3 +82,28 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+.new-playground-button {
+  cursor: pointer;
+  font-weight: 600;
+  font-family: Helvetica, "sans-serif";
+  transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+
+  margin-top: 5px;
+}
+.new-playground-button > svg {
+  width: 30px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+.new-playground-button:hover svg {
+  transform: translateX(5px);
+}
+
+.new-playground-button:active {
+  transform: scale(0.95);
+}
