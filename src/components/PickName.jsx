@@ -27,41 +27,49 @@ const PickName = ({ closeModal }) => {
     getImage();
     if (params?.id) {
       const playground = getDoc(doc(db, "playgrounds", params.id));
-      playground.then((doc) => {
-        setPlaygroundInfo({
-          name: doc?.data()?.name,
-          owner: doc?.data()?.owner,
+      playground
+        .then((doc) => {
+          setPlaygroundInfo({
+            name: doc?.data()?.name,
+            owner: doc?.data()?.owner,
+          });
+        })
+        .catch((err) => {
+          toast.error("Error: invalid playground");
         });
-      });
     }
   }, []);
 
   const updatePlayground = () => {
-    try {
-      //updates existing playground
-      const errors = validatePlayground(
-        state.code,
-        playgroundInfo?.name,
-        playgroundInfo?.owner,
-        user
-      );
-      if (errors.length > 0) {
-        errors.forEach((error) => {
-          toast.error(error);
-        });
-        return;
-      }
-      updateDoc(doc(db, `playgrounds`, params.id), {
-        name: playgroundInfo?.name,
-        "code.html": state.code.html,
-        "code.css": state.code.css,
-        "code.javascript": state.code.javascript,
-        image: image || "",
+    //updates existing playground
+    const errors = validatePlayground(
+      state.code,
+      playgroundInfo?.name,
+      playgroundInfo?.owner,
+      user
+    );
+    if (errors.length > 0) {
+      errors.forEach((error) => {
+        toast.error(error);
       });
-    } catch (e) {
-      console.log(e);
+      return;
     }
-    closeModal();
+    updateDoc(doc(db, `playgrounds`, params.id), {
+      name: playgroundInfo?.name,
+      "code.html": state.code.html,
+      "code.css": state.code.css,
+      "code.javascript": state.code.javascript,
+      image: image || "",
+    })
+      .catch((err) => {
+        toast.error("Error: the playground doesn't exist");
+      })
+      .finally(() => {
+        //wait 3 seconds
+        setTimeout(() => {
+          closeModal();
+        }, 3000);
+      });
   };
   const savePlayground = () => {
     const errors = validatePlayground(
@@ -88,9 +96,9 @@ const PickName = ({ closeModal }) => {
       image: image || "",
     };
     addDoc(collection(db, "playgrounds"), playground).then((docRef) => {
+      closeModal();
       navigate(`/${docRef.id}`);
     });
-    closeModal();
   };
 
   return (
