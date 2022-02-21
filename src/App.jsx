@@ -48,7 +48,9 @@ function App() {
       
       <div className="flex h-screen">
       {width > 1000 && <NavBar setLayout={setLayout} layout={layout} openModal={() => setIsOpen(true)} />}
-        {layout === "1" ? (
+        {
+        //LAYOUT 1 
+        layout === "1" ? (
           <Split
           minSize={100}
           render={({ getGridProps, getGutterProps }) => (
@@ -76,7 +78,8 @@ function App() {
             </div>
           )}
         />
-        ):(
+        // LAYOUT2
+        ):layout ==="2"?(
           <div className={`grid grid-cols-4 w-screen  ${
             width > 1200 ? "ml-[4rem]" : ""
           }  bottom-0 `}>
@@ -86,7 +89,18 @@ function App() {
             <Display></Display>
           </div>
 
-        )}
+        ):
+        // LAYOUT3
+        layout ==="3"?(
+          <div className={`grid grid-cols-1 grid-rows-4 w-screen  ${
+            width > 1200 ? "ml-[4rem]" : ""
+          }  bottom-0 `}>
+            <CodeContainer language="html" ></CodeContainer>
+            <CodeContainer language="css"></CodeContainer>
+            <CodeContainer language="javascript"></CodeContainer>
+            <Display></Display>
+          </div>
+        ):""}
 
         
       </div>

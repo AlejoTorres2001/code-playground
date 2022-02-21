@@ -162,9 +162,9 @@ const NavBar = ({ openModal, setLayout, layout }) => {
           </Link>
         </li>
         {showSettings && (
-          <li className="w-full transition: duration-200 ease-in flex flex-col">
+          <li className="w-full transition: duration-200 ease-in flex flex-col text-[#C8C8C9]">
             <div>
-              <h2 className=" text-md text-white text-center ">Layouts</h2>
+              <h2 className=" text-md  text-center ">Layouts</h2>
             </div>
             <div className="flex flex-col justify-center items-center my-1 ml-[10%] ">
               
