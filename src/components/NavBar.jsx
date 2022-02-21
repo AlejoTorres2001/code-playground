@@ -16,7 +16,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
 import { toast, ToastContainer } from "react-toastify";
-const NavBar = ({ openModal,setSettings,settings }) => {
+import { useState } from "react";
+import Layout1 from "../assets/layout1.svg";
+import Layout2 from "../assets/layout2.svg";
+import Layout3 from "../assets/layout3.svg";
+const NavBar = ({ openModal, setLayout, layout }) => {
+  //state-settings
+  const [showSettings, setShowSettings] = useState(false);
+  const [radioPick, setRadioPick] = useState("1");
   //react-router
   const location = useLocation();
   const navigate = useNavigate();
@@ -43,6 +50,11 @@ const NavBar = ({ openModal,setSettings,settings }) => {
     //open iframe in new window
     navigate(`/fullscreen`);
   };
+  const changeLayout = (e) => {
+    setRadioPick(e.target.value);
+    setLayout(e.target.value);
+  };
+  console.log("Este es el state", layout);
   return (
     <nav className="group z-10 w-[4rem] h-screen fixed bg-[#2D323C] hover:w-64 transition: duration-200 ease-in top-0">
       <ToastContainer></ToastContainer>
@@ -133,7 +145,10 @@ const NavBar = ({ openModal,setSettings,settings }) => {
             </li>
           )}
 
-        <li onClick={()=>setSettings(!settings)} className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
+        <li
+          onClick={() => setShowSettings(!showSettings)}
+          className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in"
+        >
           <Link to="#" className="flex items-center" href="">
             <AdjustmentsIcon
               color="#4F525B"
@@ -146,6 +161,51 @@ const NavBar = ({ openModal,setSettings,settings }) => {
             </span>
           </Link>
         </li>
+        {showSettings && (
+          <li className="w-full transition: duration-200 ease-in flex flex-col">
+            <div>
+              <h2 className=" text-md text-white text-center ">Layouts</h2>
+            </div>
+            <div className="flex flex-col justify-center items-center my-1 ml-[10%] ">
+              
+                <span className=" flex my-2 space-x-2">
+                  <input
+                    type="radio"
+                    name="layout1"
+                    id="layout1"
+                    value={"1"}
+                    onChange={changeLayout}
+                    checked={radioPick === "1"}
+                  />
+                  <img src={Layout1} />
+                </span>
+                <span className="flex my-2 space-x-2">
+                  <input
+                    type="radio"
+                    name="layout2"
+                    id="layout2"
+                    value={"2"}
+                    onChange={changeLayout}
+                    checked={radioPick === "2"}
+                  />
+                  <img src={Layout2} />
+                </span>
+                <span className="flex my-2 space-x-2">
+                  <input
+                    type="radio"
+                    name="layout3"
+                    id="layout3"
+                    value={"3"}
+                    onChange={changeLayout}
+                    checked={radioPick === "3"}
+
+                  />
+                  <img src={Layout3} />
+                </span>
+              
+            </div>
+          </li>
+        )}
         {user ? (
           <li className="w-full mt-auto hover:bg-[#1E1E1E] transition: duration-200 ease-in">
             <Link

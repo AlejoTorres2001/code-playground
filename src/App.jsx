@@ -16,7 +16,7 @@ import { actionCreators } from "./state";
 import { db } from "./firebase";
 function App() {
   //settings state
-  const [settings, setSettings] = useState(false);
+  const [layout, setLayout] = useState("1");
   //dimensions hook
   const { height, width } = useWindowDimensions();
   //state
@@ -47,8 +47,8 @@ function App() {
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
       
       <div className="flex h-screen">
-      {width > 1000 && <NavBar setSettings={setSettings} settings={settings} openModal={() => setIsOpen(true)} />}
-        {settings ? (
+      {width > 1000 && <NavBar setLayout={setLayout} layout={layout} openModal={() => setIsOpen(true)} />}
+        {layout === "1" ? (
           <Split
           minSize={100}
           render={({ getGridProps, getGutterProps }) => (
@@ -91,7 +91,7 @@ function App() {
         
       </div>
       {width <= 600 && <MobileNavBar openModal={() => setIsOpen(true)} />}
-      <Footer settings={settings}></Footer>
+      <Footer layout={layout}></Footer>
     </div>
   );
 }
