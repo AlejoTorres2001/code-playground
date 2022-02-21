@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
 import { toast, ToastContainer } from "react-toastify";
-const NavBar = ({ openModal }) => {
+const NavBar = ({ openModal,setSettings,settings }) => {
   //react-router
   const location = useLocation();
   const navigate = useNavigate();
@@ -133,7 +133,7 @@ const NavBar = ({ openModal }) => {
             </li>
           )}
 
-        <li className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
+        <li onClick={()=>setSettings(!settings)} className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in">
           <Link to="#" className="flex items-center" href="">
             <AdjustmentsIcon
               color="#4F525B"

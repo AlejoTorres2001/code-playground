@@ -1,15 +1,13 @@
 import { useLocation } from "react-router-dom";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
-const Footer = () => {
+const Footer = ({settings}) => {
   const location = useLocation();
   const { height, width } = useWindowDimensions();
-
+  console.log(settings)
   return (
     <footer
-      className={`${
-        location.pathname === "/playgrounds" ? "inset-x-0 bottom-0" : ""
-      } flex grow items-center justify-center flex-col    bg-[#2D323C]  `}
+      className={`flex grow ${width > 600 && !settings &&  'h-[4%]'} items-center justify-center flex-col bg-[#2D323C]`}
     >
       {width <= 600 &&
        (

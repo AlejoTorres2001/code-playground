@@ -15,6 +15,8 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
 function App() {
+  //settings state
+  const [settings, setSettings] = useState(false);
   //dimensions hook
   const { height, width } = useWindowDimensions();
   //state
@@ -25,7 +27,7 @@ function App() {
   const code = useSelector((state) => state.code);
   const dispatch = useDispatch();
   const { setCode } = bindActionCreators(actionCreators, dispatch);
-  
+  const test = true
   const isCodeStateEmpty = () => {
     return code.html === "" && code.css === "" && code.javascript === "";
   };
@@ -41,12 +43,13 @@ function App() {
     }
   }, []);
   return (
-    <div className="scrollbar-hide">
+    <div className="scrollbar-hide h-screen">
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
-      <div className="flex">
-        {width > 1000 && <NavBar openModal={() => setIsOpen(true)} />}
-
-        <Split
+      
+      <div className="flex h-screen">
+      {width > 1000 && <NavBar setSettings={setSettings} settings={settings} openModal={() => setIsOpen(true)} />}
+        {settings ? (
+          <Split
           minSize={100}
           render={({ getGridProps, getGutterProps }) => (
             <div
@@ -73,9 +76,22 @@ function App() {
             </div>
           )}
         />
+        ):(
+          <div className={`grid grid-cols-4 w-screen  ${
+            width > 1200 ? "ml-[4rem]" : ""
+          }  bottom-0 `}>
+            <CodeContainer language="html" ></CodeContainer>
+            <CodeContainer language="css"></CodeContainer>
+            <CodeContainer language="javascript"></CodeContainer>
+            <Display></Display>
+          </div>
+
+        )}
+
+        
       </div>
       {width <= 600 && <MobileNavBar openModal={() => setIsOpen(true)} />}
-      <Footer></Footer>
+      <Footer settings={settings}></Footer>
     </div>
   );
 }

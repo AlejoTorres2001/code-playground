@@ -11,7 +11,7 @@ const CodeContainer = ({ language }) => {
     setCode(value, language);
   };
   return (
-    <div className={`flex flex-col focus:outline-none bg-gray-600`}>
+    <div className={`flex flex-col focus:outline-none bg-gray-600 `}>
       <Editor
         theme="vs-dark"
         options={{ fontSize: "18px", automaticLayout: true, wordWrap: "on" }}
