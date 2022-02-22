@@ -14,12 +14,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
+import SkyPackSearchBar from "./components/SkyPackSearchBar";
 function App() {
+  //state search-bar
+  const [isOpenSearchBar, setIsOpenSearchBar] = useState(false);
   //settings state
   const [layout, setLayout] = useState("1");
   //dimensions hook
   const { height, width } = useWindowDimensions();
-  //state
+  //state modal
   const [isOpen, setIsOpen] = useState(false);
   //router
   const params = useParams();
@@ -43,7 +46,7 @@ function App() {
     }
   }, []);
   return (
-    <div className="scrollbar-hide h-screen">
+    <div className="scrollbar-hide h-screen ">
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
 
       <div className="flex h-screen">
@@ -52,7 +55,11 @@ function App() {
             setLayout={setLayout}
             layout={layout}
             openModal={() => setIsOpen(true)}
+            openSearchBar={() => setIsOpenSearchBar(!isOpenSearchBar)}
           />
+        )}
+        {isOpenSearchBar && (
+          <SkyPackSearchBar/>
         )}
         {
           //LAYOUT 1
@@ -62,7 +69,7 @@ function App() {
               render={({ getGridProps, getGutterProps }) => (
                 <div
                   className={`grid-container overflow-hidden  h-screen w-screen ${
-                    width > 1200 ? "ml-[4rem]" : ""
+                    width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
                   }  bottom-0 `}
                   {...getGridProps()}
                 >

@@ -23,7 +23,8 @@ import Layout3 from "../assets/layout3.svg";
 import Skypack from "../assets/skypack.svg";
 
 import LayoutSetting from "./LayoutSetting";
-const NavBar = ({ openModal, setLayout, layout }) => {
+const NavBar = ({ openModal, setLayout, layout ,openSearchBar}) => {
+  
   //state-settings
   const [showSettings, setShowSettings] = useState(false);
   const [radioPick, setRadioPick] = useState(layout);
@@ -147,7 +148,7 @@ const NavBar = ({ openModal, setLayout, layout }) => {
           )}
           <li
              
-              className={` w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in`}
+              className={` w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in`} onClick={openSearchBar}
             >
               <Link to="#" className="flex items-center " href="">
                 {/* sketchy solution */}
