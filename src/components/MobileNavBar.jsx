@@ -18,6 +18,7 @@ import Layout2 from "../assets/layout2.svg";
 import Layout3 from "../assets/layout3.svg";
 import { useState } from "react";
 import LayoutSetting from "./LayoutSetting";
+import { toast,ToastContainer } from "react-toastify";
 const MobileNavBar = ({ openModal, setLayout, layout }) => {
   //state-settings
   const [showSettings, setShowSettings] = useState(false);
@@ -33,6 +34,7 @@ const MobileNavBar = ({ openModal, setLayout, layout }) => {
   const [user, loading, error] = useAuthState(auth);
   const openPickNameModal = () => {
     if (!user) {
+      toast.warning("Sign in to save a playground");
       return;
     }
     openModal();
@@ -50,6 +52,7 @@ const MobileNavBar = ({ openModal, setLayout, layout }) => {
 
   return (
     <nav className="w-screen bg-[#2D323C] flex flex-col items-center justify-between">
+      <ToastContainer></ToastContainer>
       {showSettings && (
         <div>
           <div>
