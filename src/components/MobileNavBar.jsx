@@ -17,6 +17,7 @@ import Layout1 from "../assets/layout1.svg";
 import Layout2 from "../assets/layout2.svg";
 import Layout3 from "../assets/layout3.svg";
 import { useState } from "react";
+import LayoutSetting from "./LayoutSetting";
 const MobileNavBar = ({ openModal, setLayout, layout }) => {
   //state-settings
   const [showSettings, setShowSettings] = useState(false);
@@ -55,39 +56,27 @@ const MobileNavBar = ({ openModal, setLayout, layout }) => {
             <h2 className=" text-md  text-center text-[#C8C8C9] ">Layouts</h2>
           </div>
           <div className="flex w-full  justify-evenly items-center space-x-3">
-            <span className=" flex my-2 space-x-1">
-              <input
-                type="radio"
-                name="layout1"
-                id="layout1"
-                value={"1"}
-                onChange={changeLayout}
-                checked={radioPick === "1"}
-              />
-              <img src={Layout1} />
-            </span>
-            <span className="flex my-2 space-x-1">
-              <input
-                type="radio"
-                name="layout2"
-                id="layout2"
-                value={"2"}
-                onChange={changeLayout}
-                checked={radioPick === "2"}
-              />
-              <img src={Layout2} />
-            </span>
-            <span className="flex my-2 space-x-1">
-              <input
-                type="radio"
-                name="layout3"
-                id="layout3"
-                value={"3"}
-                onChange={changeLayout}
-                checked={radioPick === "3"}
-              />
-              <img src={Layout3} />
-            </span>
+            <LayoutSetting
+              LayoutImg={Layout1}
+              name="Layout 1"
+              value="1"
+              handleChange={changeLayout}
+              pickedValue={radioPick}
+            />
+            <LayoutSetting
+              LayoutImg={Layout2}
+              name="Layout 2"
+              value="2"
+              handleChange={changeLayout}
+              pickedValue={radioPick}
+            />
+            <LayoutSetting
+              LayoutImg={Layout3}
+              name="Layout 3"
+              value="3"
+              handleChange={changeLayout}
+              pickedValue={radioPick}
+            />
           </div>
         </div>
       )}
