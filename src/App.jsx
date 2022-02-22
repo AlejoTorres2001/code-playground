@@ -27,7 +27,7 @@ function App() {
   const code = useSelector((state) => state.code);
   const dispatch = useDispatch();
   const { setCode } = bindActionCreators(actionCreators, dispatch);
-  const test = true
+  const test = true;
   const isCodeStateEmpty = () => {
     return code.html === "" && code.css === "" && code.javascript === "";
   };
@@ -45,66 +45,81 @@ function App() {
   return (
     <div className="scrollbar-hide h-screen">
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
-      
+
       <div className="flex h-screen">
-      {width > 1000 && <NavBar setLayout={setLayout} layout={layout} openModal={() => setIsOpen(true)} />}
+        {width > 1000 && (
+          <NavBar
+            setLayout={setLayout}
+            layout={layout}
+            openModal={() => setIsOpen(true)}
+          />
+        )}
         {
-        //LAYOUT 1 
-        layout === "1" ? (
-          <Split
-          minSize={100}
-          render={({ getGridProps, getGutterProps }) => (
+          //LAYOUT 1
+          layout === "1" ? (
+            <Split
+              minSize={100}
+              render={({ getGridProps, getGutterProps }) => (
+                <div
+                  className={`grid-container overflow-hidden  h-screen w-screen ${
+                    width > 1200 ? "ml-[4rem]" : ""
+                  }  bottom-0 `}
+                  {...getGridProps()}
+                >
+                  <CodeContainer language="html"></CodeContainer>
+                  <CodeContainer language="css"></CodeContainer>
+                  <CodeContainer language="javascript"></CodeContainer>
+                  <Display></Display>
+                  <div />
+                  <div
+                    className="gutter-col gutter-col-1 bg-[#2D323C]"
+                    {...getGutterProps("column", 1)}
+                  />
+                  <div />
+                  <div
+                    className="gutter-row gutter-row-1 bg-[#2D323C]"
+                    {...getGutterProps("row", 1)}
+                  />
+                  <div />
+                </div>
+              )}
+            />
+          ) : // LAYOUT2
+          layout === "2" ? (
             <div
-              className={`grid-container overflow-hidden  h-screen w-screen ${
+              className={`grid grid-cols-4 w-screen  ${
                 width > 1200 ? "ml-[4rem]" : ""
               }  bottom-0 `}
-              {...getGridProps()}
             >
               <CodeContainer language="html"></CodeContainer>
               <CodeContainer language="css"></CodeContainer>
               <CodeContainer language="javascript"></CodeContainer>
               <Display></Display>
-              <div />
-              <div
-                className="gutter-col gutter-col-1 bg-[#2D323C]"
-                {...getGutterProps("column", 1)}
-              />
-              <div />
-              <div
-                className="gutter-row gutter-row-1 bg-[#2D323C]"
-                {...getGutterProps("row", 1)}
-              />
-              <div />
             </div>
-          )}
-        />
-        // LAYOUT2
-        ):layout ==="2"?(
-          <div className={`grid grid-cols-4 w-screen  ${
-            width > 1200 ? "ml-[4rem]" : ""
-          }  bottom-0 `}>
-            <CodeContainer language="html" ></CodeContainer>
-            <CodeContainer language="css"></CodeContainer>
-            <CodeContainer language="javascript"></CodeContainer>
-            <Display></Display>
-          </div>
-
-        ):
-        // LAYOUT3
-        layout ==="3"?(
-          <div className={`grid grid-cols-1 grid-rows-4 w-screen  ${
-            width > 1200 ? "ml-[4rem]" : ""
-          }  bottom-0 `}>
-            <CodeContainer language="html" ></CodeContainer>
-            <CodeContainer language="css"></CodeContainer>
-            <CodeContainer language="javascript"></CodeContainer>
-            <Display></Display>
-          </div>
-        ):""}
-
-        
+          ) : // LAYOUT3
+          layout === "3" ? (
+            <div
+              className={`grid grid-cols-1 grid-rows-4 w-screen  ${
+                width > 1200 ? "ml-[4rem]" : ""
+              }  bottom-0 `}
+            >
+              <CodeContainer language="html"></CodeContainer>
+              <CodeContainer language="css"></CodeContainer>
+              <CodeContainer language="javascript"></CodeContainer>
+              <Display></Display>
+            </div>
+          ) : (
+            ""
+          )
+        }
       </div>
-      {width <= 600 && <MobileNavBar openModal={() => setIsOpen(true)} />}
+      {width <= 600 && (
+        <MobileNavBar
+          setLayout={setLayout}
+          layout={layout}
+          openModal={() => setIsOpen(true)}
+        />
+      )}
       <Footer layout={layout}></Footer>
     </div>
   );
