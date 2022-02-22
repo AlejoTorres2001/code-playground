@@ -10,12 +10,12 @@ const Footer = ({ layout }) => {
     >
       {width <= 600 && (
         <div>
-          <span className="text-[#F7DF1E]">c</span>
-          <span className="text-[#E34F26] text-lg">o</span>
-          <span className="text-[#0C73B8] text-lg">d</span>
-          <span className="text-[#F7DF1E] text-lg">i</span>
-          <span className="text-[#E34F26] text-lg">f</span>
-          <span className="text-[#0C73B8] text-lg">y</span>
+          <span className="text-[#F7DF1E] text-lg">C</span>
+          <span className="text-[#E34F26] text-lg">O</span>
+          <span className="text-[#0C73B8] text-lg">D</span>
+          <span className="text-[#F7DF1E] text-lg">I</span>
+          <span className="text-[#E34F26] text-lg">F</span>
+          <span className="text-[#0C73B8] text-lg">Y</span>
         </div>
       )}
       <span
