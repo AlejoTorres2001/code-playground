@@ -20,6 +20,8 @@ import { useState } from "react";
 import Layout1 from "../assets/layout1.svg";
 import Layout2 from "../assets/layout2.svg";
 import Layout3 from "../assets/layout3.svg";
+import Skypack from "../assets/skypack.svg";
+
 import LayoutSetting from "./LayoutSetting";
 const NavBar = ({ openModal, setLayout, layout }) => {
   //state-settings
@@ -143,6 +145,18 @@ const NavBar = ({ openModal, setLayout, layout }) => {
               </Link>
             </li>
           )}
+          <li
+             
+              className={` w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in`}
+            >
+              <Link to="#" className="flex items-center " href="">
+                {/* sketchy solution */}
+                <img src={Skypack} className="w-[4rem] h-[2rem] m-4  group-hover:w-[5rem] group-hover:h-[3rem]" />
+                <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">
+                  SkyPack
+                </span>
+              </Link>
+            </li>
 
         <li
           onClick={() => setShowSettings(!showSettings)}
