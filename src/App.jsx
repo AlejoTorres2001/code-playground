@@ -55,11 +55,12 @@ function App() {
             setLayout={setLayout}
             layout={layout}
             openModal={() => setIsOpen(true)}
-            openSearchBar={() => setIsOpenSearchBar(!isOpenSearchBar)}
+            openSearchBar={() => setIsOpenSearchBar(true)}
+            
           />
         )}
         {isOpenSearchBar && (
-          <SkyPackSearchBar/>
+          <SkyPackSearchBar closeSearchBar={() => setIsOpenSearchBar(false)}/>
         )}
         {
           //LAYOUT 1
