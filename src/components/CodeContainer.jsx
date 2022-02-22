@@ -7,7 +7,7 @@ const CodeContainer = ({ language }) => {
   const code = useSelector((state) => state.code[language]);
   const dispatch = useDispatch();
   const { setCode } = bindActionCreators(actionCreators, dispatch);
-  const handleChange = (value, event) => {
+  const handleChange = (value) => {
     setCode(value, language);
   };
   return (
