@@ -21,7 +21,6 @@ const SkyPackSearchBar = ({ closeSearchBar }) => {
     debouncedFetchData(query, (res) => {
       setResults(res?.results);
       setIsLoading(false);
-      console.log(res);
     });
   }, [query]);
 
