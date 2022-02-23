@@ -14,9 +14,10 @@ const SearchResult = ({ data }) => {
     day: "numeric",
   }).format(new Date(data?.updatedAt));
 
-  const importModule = (name)=>{
-      
-      const importLine = `import ${name} from '${CDN_URL}/${name}'; \n`
+  const importModule = (packageName)=>{
+    let parsedName = packageName.split('/').join('-')
+    if (parsedName.startsWith('@')) parsedName = parsedName.substr(1)
+    const importLine = `import ${parsedName} from '${CDN_URL}/${packageName}'; \n`
       setCode(importLine.concat(code), "javascript")
 
 
