@@ -107,3 +107,32 @@
 .new-playground-button:active {
   transform: scale(0.95);
 }
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #5F6165;
+  border-radius: 100vh;
+}
+.scrollbar::-webkit-scrollbar-track{
+  border-radius: 100vh;
+  background: #2F363D;
+}
+
+.ts-bagde{
+  width: 18px;
+    height: 18px;
+    background: url("/src/assets/tsbadge.svg")
+}
+
+.popular-badge{
+  margin: 0.2rem;
+  border: 0px;
+  border-radius: 0.3em;
+  font-size: .7em;
+  font-weight: 500;
+  padding: 0.125em 0.375em 0.12em;
+  background-color: #80b918;
+  color: #000;
+}
