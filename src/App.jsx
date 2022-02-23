@@ -14,12 +14,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
+import SkyPackSearchBar from "./components/SkyPackSearchBar";
 function App() {
+  //state search-bar
+  const [isOpenSearchBar, setIsOpenSearchBar] = useState(false);
   //settings state
   const [layout, setLayout] = useState("1");
   //dimensions hook
   const { height, width } = useWindowDimensions();
-  //state
+  //state modal
   const [isOpen, setIsOpen] = useState(false);
   //router
   const params = useParams();
@@ -30,6 +33,11 @@ function App() {
   const test = true;
   const isCodeStateEmpty = () => {
     return code.html === "" && code.css === "" && code.javascript === "";
+  };
+  const dontShowLayout = () => {
+    if (width <= 600 && isOpenSearchBar) {
+      return true;
+    }
   };
   useEffect(() => {
     if (params?.id && isCodeStateEmpty()) {
@@ -43,26 +51,30 @@ function App() {
     }
   }, []);
   return (
-    <div className="scrollbar-hide h-screen">
+    <div className="scrollbar-hide h-screen ">
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
 
-      <div className="flex h-screen">
+      <div className="flex h-screen ">
         {width > 1000 && (
           <NavBar
             setLayout={setLayout}
             layout={layout}
             openModal={() => setIsOpen(true)}
+            openSearchBar={() => setIsOpenSearchBar(true)}
           />
+        )}
+        {isOpenSearchBar && (
+          <SkyPackSearchBar closeSearchBar={() => setIsOpenSearchBar(false)} />
         )}
         {
           //LAYOUT 1
-          layout === "1" ? (
+          layout === "1" && !dontShowLayout() ? (
             <Split
               minSize={100}
               render={({ getGridProps, getGutterProps }) => (
                 <div
                   className={`grid-container overflow-hidden  h-screen w-screen ${
-                    width > 1200 ? "ml-[4rem]" : ""
+                    width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
                   }  bottom-0 `}
                   {...getGridProps()}
                 >
@@ -85,10 +97,10 @@ function App() {
               )}
             />
           ) : // LAYOUT2
-          layout === "2" ? (
+          layout === "2" && !dontShowLayout() ? (
             <div
-              className={`grid grid-cols-4 w-screen  ${
-                width > 1200 ? "ml-[4rem]" : ""
+              className={`grid grid-cols-4 overflow-hidden  h-screen w-screen  ${
+                width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
               }  bottom-0 `}
             >
               <CodeContainer language="html"></CodeContainer>
@@ -97,10 +109,10 @@ function App() {
               <Display></Display>
             </div>
           ) : // LAYOUT3
-          layout === "3" ? (
+          layout === "3" && !dontShowLayout() ? (
             <div
               className={`grid grid-cols-1 grid-rows-4 w-screen  ${
-                width > 1200 ? "ml-[4rem]" : ""
+                width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
               }  bottom-0 `}
             >
               <CodeContainer language="html"></CodeContainer>
@@ -119,6 +131,8 @@ function App() {
           setLayout={setLayout}
           layout={layout}
           openModal={() => setIsOpen(true)}
+          showSearchBar={(state) => setIsOpenSearchBar(state)}
+          isOpenSearchBar={isOpenSearchBar}
         />
       )}
       <Footer layout={layout}></Footer>

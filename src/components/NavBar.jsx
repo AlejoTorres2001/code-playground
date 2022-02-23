@@ -20,8 +20,10 @@ import { useState } from "react";
 import Layout1 from "../assets/layout1.svg";
 import Layout2 from "../assets/layout2.svg";
 import Layout3 from "../assets/layout3.svg";
+import Skypack from "../assets/skypack.svg";
+
 import LayoutSetting from "./LayoutSetting";
-const NavBar = ({ openModal, setLayout, layout }) => {
+const NavBar = ({ openModal, setLayout, layout, openSearchBar }) => {
   //state-settings
   const [showSettings, setShowSettings] = useState(false);
   const [radioPick, setRadioPick] = useState(layout);
@@ -143,23 +145,42 @@ const NavBar = ({ openModal, setLayout, layout }) => {
               </Link>
             </li>
           )}
+        {location.pathname !== "/playgrounds" && (
+          <li
+            className={` w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in`}
+            onClick={openSearchBar}
+          >
+            <Link to="#" className="flex items-center " href="">
+              {/* sketchy solution */}
+              <img
+                src={Skypack}
+                className="w-[4rem] h-[2rem] m-4  group-hover:w-[5rem] group-hover:h-[3rem]"
+              />
+              <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">
+                SkyPack
+              </span>
+            </Link>
+          </li>
+        )}
 
-        <li
-          onClick={() => setShowSettings(!showSettings)}
-          className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in"
-        >
-          <Link to="#" className="flex items-center" href="">
-            <AdjustmentsIcon
-              color="#4F525B"
-              className="m-4"
-              width={"5rem"}
-              height={"3rem"}
-            ></AdjustmentsIcon>
-            <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">
-              Settings
-            </span>
-          </Link>
-        </li>
+        {location.pathname !== "/playgrounds" && (
+          <li
+            onClick={() => setShowSettings(!showSettings)}
+            className="w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in"
+          >
+            <Link to="#" className="flex items-center" href="">
+              <AdjustmentsIcon
+                color="#4F525B"
+                className="m-4"
+                width={"5rem"}
+                height={"3rem"}
+              ></AdjustmentsIcon>
+              <span className="hidden ml-1 group-hover:block text-[#C8C8C9]">
+                Settings
+              </span>
+            </Link>
+          </li>
+        )}
         {showSettings && (
           <li className="w-full transition: duration-200 ease-in flex flex-col text-[#C8C8C9]">
             <div>
@@ -167,26 +188,26 @@ const NavBar = ({ openModal, setLayout, layout }) => {
             </div>
             <div className="flex flex-col justify-center items-center my-1 ml-[10%] ">
               <LayoutSetting
-              LayoutImg={Layout1}
-              name="Layout 1"
-              value="1"
-              handleChange={changeLayout}
-              pickedValue={radioPick}
-              />          
+                LayoutImg={Layout1}
+                name="Layout 1"
+                value="1"
+                handleChange={changeLayout}
+                pickedValue={radioPick}
+              />
               <LayoutSetting
-              LayoutImg={Layout2}
-              name="Layout 2"
-              value="2"
-              handleChange={changeLayout}
-              pickedValue={radioPick}
-              />    
+                LayoutImg={Layout2}
+                name="Layout 2"
+                value="2"
+                handleChange={changeLayout}
+                pickedValue={radioPick}
+              />
               <LayoutSetting
-              LayoutImg={Layout3}
-              name="Layout 3"
-              value="3"
-              handleChange={changeLayout}
-              pickedValue={radioPick}
-              />    
+                LayoutImg={Layout3}
+                name="Layout 3"
+                value="3"
+                handleChange={changeLayout}
+                pickedValue={radioPick}
+              />
             </div>
           </li>
         )}
