@@ -34,6 +34,11 @@ function App() {
   const isCodeStateEmpty = () => {
     return code.html === "" && code.css === "" && code.javascript === "";
   };
+  const dontShowLayout = ()=>{
+    if (width<=600 && isOpenSearchBar){
+      return true;
+    }
+  }
   useEffect(() => {
     if (params?.id && isCodeStateEmpty()) {
       //load the code from the database
@@ -64,7 +69,7 @@ function App() {
         )}
         {
           //LAYOUT 1
-          layout === "1" && !isOpenSearchBar ? (
+          layout === "1" && !dontShowLayout() ? (
             <Split
               minSize={100}
               render={({ getGridProps, getGutterProps }) => (
@@ -93,7 +98,7 @@ function App() {
               )}
             />
           ) : // LAYOUT2
-          layout === "2" && !isOpenSearchBar ? (
+          layout === "2" &&  !dontShowLayout() ? (
             <div
               className={`grid grid-cols-4 overflow-hidden  h-screen w-screen  ${
                 width > 1200 &&  !isOpenSearchBar ? "ml-[4rem]" : ""
@@ -105,7 +110,7 @@ function App() {
               <Display></Display>
             </div>
           ) : // LAYOUT3
-          layout === "3" && !isOpenSearchBar ? (
+          layout === "3" && !dontShowLayout() ? (
             <div
               className={`grid grid-cols-1 grid-rows-4 w-screen  ${
                 width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
