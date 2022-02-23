@@ -34,11 +34,11 @@ function App() {
   const isCodeStateEmpty = () => {
     return code.html === "" && code.css === "" && code.javascript === "";
   };
-  const dontShowLayout = ()=>{
-    if (width<=600 && isOpenSearchBar){
+  const dontShowLayout = () => {
+    if (width <= 600 && isOpenSearchBar) {
       return true;
     }
-  }
+  };
   useEffect(() => {
     if (params?.id && isCodeStateEmpty()) {
       //load the code from the database
@@ -61,11 +61,10 @@ function App() {
             layout={layout}
             openModal={() => setIsOpen(true)}
             openSearchBar={() => setIsOpenSearchBar(true)}
-            
           />
         )}
         {isOpenSearchBar && (
-          <SkyPackSearchBar closeSearchBar={() => setIsOpenSearchBar(false)}/>
+          <SkyPackSearchBar closeSearchBar={() => setIsOpenSearchBar(false)} />
         )}
         {
           //LAYOUT 1
@@ -98,10 +97,10 @@ function App() {
               )}
             />
           ) : // LAYOUT2
-          layout === "2" &&  !dontShowLayout() ? (
+          layout === "2" && !dontShowLayout() ? (
             <div
               className={`grid grid-cols-4 overflow-hidden  h-screen w-screen  ${
-                width > 1200 &&  !isOpenSearchBar ? "ml-[4rem]" : ""
+                width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
               }  bottom-0 `}
             >
               <CodeContainer language="html"></CodeContainer>

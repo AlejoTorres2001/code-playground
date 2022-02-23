@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-const SearchResult = ({ data,closeSearchBar }) => {
+const SearchResult = ({ data, closeSearchBar }) => {
   const CDN_URL = "https://cdn.skypack.dev";
   const { height, width } = useWindowDimensions();
   const dispatch = useDispatch();
@@ -19,11 +19,11 @@ const SearchResult = ({ data,closeSearchBar }) => {
     if (parsedName.startsWith("@")) parsedName = parsedName.substr(1);
     const importLine = `import ${parsedName} from '${CDN_URL}/${packageName}'; \n`;
     setCode(importLine.concat(code), "javascript");
-    if ( width < 600) closeSearchBar()
+    if (width < 600) closeSearchBar();
   };
   return (
     <div
-      className="my-1 w-[300px]  hover:bg-[#393D46]   text-[1rem] overflow-hidden text-ellipsis"
+      className="my-1 w-[300px]   hover:bg-[#393D46]   text-[1rem] overflow-hidden text-ellipsis"
       onClick={() => importModule(data?.name)}
     >
       <header className="text-white flex ">

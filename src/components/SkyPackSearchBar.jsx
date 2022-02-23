@@ -25,7 +25,7 @@ const SkyPackSearchBar = ({ closeSearchBar }) => {
   }, [query]);
 
   return (
-    <div className="md:ml-9 bg-[#2D323C] flex flex-col  p-1 w-screen   ">
+    <div className="md:ml-9 bg-[#2D323C] flex flex-col  p-1 w-screen md:w-[30%]">
       <div className="flex w-full justify-end">
         <div
           className=" rounded-full m-[0.1rem] hover:bg-red-500 hover:cursor-pointer"
@@ -70,7 +70,11 @@ const SkyPackSearchBar = ({ closeSearchBar }) => {
       {!isLoading && (
         <div className="mt-2 ml-9 overflow-y-auto scrollbar ">
           {results?.map((result, i) => (
-            <SearchResult key={i} data={result} closeSearchBar={closeSearchBar} />
+            <SearchResult
+              key={i}
+              data={result}
+              closeSearchBar={closeSearchBar}
+            />
           ))}
         </div>
       )}
