@@ -96,7 +96,7 @@ function App() {
           layout === "2" ? (
             <div
               className={`grid grid-cols-4 w-screen  ${
-                width > 1200 ? "ml-[4rem]" : ""
+                width > 1200 &&  !isOpenSearchBar ? "ml-[4rem]" : ""
               }  bottom-0 `}
             >
               <CodeContainer language="html"></CodeContainer>
@@ -108,7 +108,7 @@ function App() {
           layout === "3" ? (
             <div
               className={`grid grid-cols-1 grid-rows-4 w-screen  ${
-                width > 1200 ? "ml-[4rem]" : ""
+                width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
               }  bottom-0 `}
             >
               <CodeContainer language="html"></CodeContainer>
