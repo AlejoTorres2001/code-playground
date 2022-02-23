@@ -21,7 +21,7 @@ import Skypack from "../assets/skypack.svg";
 import { useState } from "react";
 import LayoutSetting from "./LayoutSetting";
 import { toast, ToastContainer } from "react-toastify";
-const MobileNavBar = ({ openModal, setLayout, layout }) => {
+const MobileNavBar = ({ openModal, setLayout, layout, isOpenSearchBar,showSearchBar }) => {
   //state-settings
   const [showSettings, setShowSettings] = useState(false);
   const [radioPick, setRadioPick] = useState(layout);
@@ -130,6 +130,7 @@ const MobileNavBar = ({ openModal, setLayout, layout }) => {
         )}
         {location.pathname !== "/playgrounds" && (
           <li
+            onClick={()=>showSearchBar(!isOpenSearchBar)}    
             className={`w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1`}
           >
             <Link to="#" className="flex flex-col items-center  " href="">

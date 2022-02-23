@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
 
-const SearchResult = ({ data }) => {
+const SearchResult = ({ data,closeSearchBar }) => {
   const CDN_URL = "https://cdn.skypack.dev";
 
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const SearchResult = ({ data }) => {
     if (parsedName.startsWith("@")) parsedName = parsedName.substr(1);
     const importLine = `import ${parsedName} from '${CDN_URL}/${packageName}'; \n`;
     setCode(importLine.concat(code), "javascript");
+    closeSearchBar()
   };
   return (
     <div

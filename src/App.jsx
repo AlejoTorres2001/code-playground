@@ -49,7 +49,7 @@ function App() {
     <div className="scrollbar-hide h-screen ">
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
 
-      <div className="flex h-screen">
+      <div className="flex h-screen ">
         {width > 1000 && (
           <NavBar
             setLayout={setLayout}
@@ -64,7 +64,7 @@ function App() {
         )}
         {
           //LAYOUT 1
-          layout === "1" ? (
+          layout === "1" && !isOpenSearchBar ? (
             <Split
               minSize={100}
               render={({ getGridProps, getGutterProps }) => (
@@ -93,7 +93,7 @@ function App() {
               )}
             />
           ) : // LAYOUT2
-          layout === "2" ? (
+          layout === "2" && !isOpenSearchBar ? (
             <div
               className={`grid grid-cols-4 overflow-hidden  h-screen w-screen  ${
                 width > 1200 &&  !isOpenSearchBar ? "ml-[4rem]" : ""
@@ -105,7 +105,7 @@ function App() {
               <Display></Display>
             </div>
           ) : // LAYOUT3
-          layout === "3" ? (
+          layout === "3" && !isOpenSearchBar ? (
             <div
               className={`grid grid-cols-1 grid-rows-4 w-screen  ${
                 width > 1200 && !isOpenSearchBar ? "ml-[4rem]" : ""
@@ -127,6 +127,8 @@ function App() {
           setLayout={setLayout}
           layout={layout}
           openModal={() => setIsOpen(true)}
+          showSearchBar={(state) => setIsOpenSearchBar(state)}
+          isOpenSearchBar={isOpenSearchBar}
         />
       )}
       <Footer layout={layout}></Footer>
