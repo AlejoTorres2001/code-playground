@@ -13,8 +13,7 @@ const debouncedFetchData = debounce((query, cb) => {
   fetchData(query, cb);
 }, 500);
 const SkyPackSearchBar = ({ closeSearchBar }) => {
-  const CDN_URL = "https://cdn.skypack.dev";
-  const PACKAGE_VIEW_URL = "https://www.skypack.dev/view";
+
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 

@@ -9,7 +9,7 @@ export default function  makeHtml(state)  {
     </style>
     <head/>
     <body>
-    <script>
+    <script type="module">
     ${state.code?.javascript}
     </script>
     ${state.code?.html}
