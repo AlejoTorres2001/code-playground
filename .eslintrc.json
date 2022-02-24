@@ -16,7 +16,11 @@
     },
     "plugins": [
         "react"
+       
     ],
     "rules": {
-    }
+    },
+    "plugin:react/jsx-runtime":"extends"
+    
+
 }
