@@ -1,7 +1,7 @@
 {
     "name":"Code Playground",
     "short_name":"Codify",
-    "start_url":"/",
+    "start_url":"https://code-playground-weld.vercel.app/",
     "display":"standalone",
     "background_color":"#ffffff",
     "theme_color":"#2D323C",
