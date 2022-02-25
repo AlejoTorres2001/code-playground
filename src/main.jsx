@@ -9,10 +9,15 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import FullScreen from "./routes/FullScreen";
 
 //service worker
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
-  .then((reg)=>{console.log("sw registered!",reg)})
-  .catch((err)=>{console.log("sw not registered!",err)})
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then((reg) => {
+      console.log("sw registered!");
+    })
+    .catch((err) => {
+      console.log("sw not registered!");
+    });
 }
 
 ReactDOM.render(
@@ -31,11 +36,9 @@ ReactDOM.render(
             }
           />
           <Route path="/fullscreen" element={<FullScreen />} />
-
         </Routes>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
-

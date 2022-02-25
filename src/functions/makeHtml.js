@@ -1,5 +1,5 @@
-export default function  makeHtml(state)  {
-    return `
+export default function makeHtml(state) {
+  return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -16,4 +16,4 @@ export default function  makeHtml(state)  {
     </body>
     </html>
     `;
-  };
+}

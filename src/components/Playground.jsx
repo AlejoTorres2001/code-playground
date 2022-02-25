@@ -4,38 +4,40 @@ import makeHtml from "../functions/makeHtml";
 import { actionCreators } from "../state";
 import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
-import {XIcon} from "@heroicons/react/outline"
-import {db} from "../firebase"
-import {deleteDoc,doc} from "firebase/firestore"
+import { XIcon } from "@heroicons/react/outline";
+import { db } from "../firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 const Playground = ({ document }) => {
   //router
   const navigate = useNavigate();
   //state-redux
   const dispatch = useDispatch();
-  const { setCode } = bindActionCreators(actionCreators, dispatch);  
-  const cleanCode=()=>{
+  const { setCode } = bindActionCreators(actionCreators, dispatch);
+  const cleanCode = () => {
     setCode("", "html");
     setCode("", "css");
     setCode("", "javascript");
-  }
+  };
   const saveFiles = () => {
     var blob = new Blob([makeHtml(document.data())], {
       type: "text/plain;charset=utf-8",
     });
     saveAs(blob, `${document.data().name}.html`);
   };
-  const deletePlayground =()=>{
-  const documentRef = doc(db, "playgrounds", document.id);
-  deleteDoc(documentRef)
-  }
+  const deletePlayground = () => {
+    const documentRef = doc(db, "playgrounds", document.id);
+    deleteDoc(documentRef);
+  };
   return (
     <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
-
       <div className="flex w-full justify-end">
-        <div className="bg-red-600 rounded-full m-[0.1rem] hover:bg-red-500 hover:cursor-pointer" onClick={deletePlayground}>
-                  <XIcon className="w-[0.8rem] h-[0.8rem] md:w-[1rem] md:h-[1rem]"></XIcon>
+        <div
+          className="bg-red-600 rounded-full m-[0.1rem] hover:bg-red-500 hover:cursor-pointer"
+          onClick={deletePlayground}
+        >
+          <XIcon className="w-[0.8rem] h-[0.8rem] md:w-[1rem] md:h-[1rem]"></XIcon>
         </div>
-        </div>
+      </div>
       <img
         src={document.data().image}
         alt="picture"
@@ -49,7 +51,7 @@ const Playground = ({ document }) => {
       <div className="flex md:mt-2 mr-2 ml-2 justify-center items-center  space-x-4 ">
         <button
           onClick={() => {
-            cleanCode()
+            cleanCode();
             navigate(`/${document.id}`);
           }}
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 rounded inline-flex items-center text-xs md:text-sm "

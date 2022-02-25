@@ -31,7 +31,7 @@ self.addEventListener("fetch", (event) => {
   //console.log("SW fetching",event)
   event.respondWith(
     caches.match(event.request).then((cacheRes) => {
-        return cacheRes || fetch(event.request);
+      return cacheRes || fetch(event.request);
     })
-  )
+  );
 });
