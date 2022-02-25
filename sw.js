@@ -4,19 +4,18 @@ const assets = [
   "/index.html",
   "/src/App.jsx",
   "/src/main.jsx",
-  "/src/components/CodeContainer.jsx",
-  "/src/components/Display.jsx",
-  "/src/components/NavBar.jsx",
-  "/src/components/MobileNavBar.jsx",
-  "/src/components/Footer.jsx",
-  "/src/components/PrivateRoute.jsx",
   "/src/index.css",
+  "/src/assets/layout1.svg",
+  "/src/assets/layout2.svg",
+  "/src/assets/layout3.svg",
+  "/src/assets/skypack.svg",
+  "manifest.json",
 ];
 //install service worker
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(staticCacheName).then((cache) => {
-      console.log("caching shell assets");
+      //console.log("caching shell assets");
       cache.addAll(assets);
     })
   );
@@ -30,4 +29,9 @@ self.addEventListener("activate", (event) => {
 //fecth event
 self.addEventListener("fetch", (event) => {
   //console.log("SW fetching",event)
+  event.respondWith(
+    caches.match(event.request).then((cacheRes) => {
+        return cacheRes || fetch(event.request);
+    })
+  )
 });
