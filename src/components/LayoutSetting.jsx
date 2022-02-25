@@ -15,7 +15,7 @@ const LayoutSetting = ({
         onChange={handleChange}
         checked={pickedValue === value}
       />
-      <img src={LayoutImg} />
+      <img src={LayoutImg} alt="layout" />
     </span>
   );
 };

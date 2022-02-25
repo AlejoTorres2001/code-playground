@@ -38,6 +38,7 @@ const Playground = ({ document }) => {
         </div>
       <img
         src={document.data().image}
+        alt="picture"
         className="md:mt-1 object-cover float-left w-[90%] h-[100px] md:h-[110px]"
       ></img>
       <div className="px-6 py-2 md:py-4">
