@@ -6,7 +6,7 @@ const Display = () => {
   const location = useLocation();
   return (
     <div className="flex">
-      <iframe
+      <iframe title="code"
         className={`outline-none  ${
           location.pathname.includes("fullscreen") && "w-screen h-screen"
         } grow  `}

@@ -97,7 +97,7 @@ const MobileNavBar = ({
           className="w-full flex flex-col items-center justify-center hover:bg-[#1E1E1E] transition: duration-200 ease-in space-x-1"
           onClick={goToNewPlayground}
         >
-          <span className="flex items-center h-[2rem] " href="">
+          <span name className="flex items-center h-[2rem] " >
             <HomeIcon color="#4F525B" width={"2rem"} height={"2rem"}></HomeIcon>
           </span>
           {/* <span className="text-[#C8C8C9] text-[0.6rem]">New Playground</span> */}
@@ -140,7 +140,7 @@ const MobileNavBar = ({
             className={`w-full hover:bg-[#1E1E1E] transition: duration-200 ease-in flex flex-col justify-center items-center space-x-1`}
           >
             <Link to="#" className="flex flex-col items-center  " href="">
-              <img src={Skypack} className="w-[2rem] h-[2rem]" />
+              <img width={"2rem"} height={"2rem"} src={Skypack} className="w-[2rem] h-[2rem]" alt="skypack" />
               {/* <span className=" text-[#C8C8C9] text-[0.6rem]">
                 SkyPack
               </span> */}
