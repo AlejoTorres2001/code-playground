@@ -15,6 +15,7 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
 import SkyPackSearchBar from "./components/SkyPackSearchBar";
+
 function App() {
   //state search-bar
   const [isOpenSearchBar, setIsOpenSearchBar] = useState(false);
@@ -52,6 +53,7 @@ function App() {
   }, []);
   return (
     <div className="scrollbar-hide h-screen ">
+      
       {isOpen && <PickName closeModal={() => setIsOpen(false)} />}
 
       <div className="flex h-screen ">
