@@ -4,9 +4,10 @@ import makeHtml from "../functions/makeHtml";
 import { actionCreators } from "../state";
 import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
-import { XIcon } from "@heroicons/react/outline";
+import { XIcon,ClipboardCopyIcon } from "@heroicons/react/outline";
 import { db } from "../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 const Playground = ({ document }) => {
   //router
   const navigate = useNavigate();
@@ -22,15 +23,32 @@ const Playground = ({ document }) => {
     var blob = new Blob([makeHtml(document.data())], {
       type: "text/plain;charset=utf-8",
     });
-    saveAs(blob, `${document.data().name}.html`);
+    saveAs(blob,`${document.data().name}.html`);
   };
   const deletePlayground = () => {
     const documentRef = doc(db, "playgrounds", document.id);
     deleteDoc(documentRef);
   };
+  const makeUrl = () => {
+    const id = document.id;
+    if (import.meta.env.MODE === 'development'){
+      return `http://localhost:3000/${id}`;
+    }
+    return `https://${window.location.host}/${id}`;
+  }
   return (
     <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-between">
+        <div className="flex items-center">
+          <CopyToClipboard text={makeUrl()} >
+          <div
+          className=" rounded-full m-[0.1rem] bg-gray-800 hover:bg-gray-700  font-bold hover:cursor-pointer"
+          
+        >
+            <ClipboardCopyIcon width={"1rem"} height={"1rem"} className="text-gray-300 hover:text-gray-400"/>
+        </div>
+          </CopyToClipboard>
+        </div>
         <div
           className="bg-red-600 rounded-full m-[0.1rem] hover:bg-red-500 hover:cursor-pointer"
           onClick={deletePlayground}
