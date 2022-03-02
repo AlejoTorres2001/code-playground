@@ -23,7 +23,7 @@
   
 ![image](https://user-images.githubusercontent.com/80418452/156077592-65adbf0e-77f3-424c-8156-523b979e146f.png)
   
- Codify is a live editor for HTML,CSS AND JS allowing you to edit your code in real-time, and seeing your results instantly,
+ Codify is a live editor for HTML,CSS AND JS allowing you to edit your code in real-time, and see your results instantly,
   
 ## Getting Started
 
@@ -46,10 +46,10 @@ $ yarn dev
 
 ### Built With
 
-- JavaScript
-- [React](https://es.reactjs.org/)
-- [Vite](https://vitejs.dev)
-- [Redux](https://redux.js.org/)
+- <img  alt="JavaScript"  src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
+- [<img  alt="React"  src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />](https://es.reactjs.org/)
+- [<img  alt="Vite"  src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" />](https://vitejs.dev)
+- [<img alt="Redux" src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" />](https://redux.js.org/)
 
 ## Contributing
 
