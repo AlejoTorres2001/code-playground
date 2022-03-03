@@ -15,6 +15,7 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "./state";
 import { db } from "./firebase";
 import SkyPackSearchBar from "./components/SkyPackSearchBar";
+import { toast } from "react-toastify";
 
 function App() {
   //state search-bar
@@ -45,9 +46,12 @@ function App() {
       //load the code from the database
       const playground = getDoc(doc(db, "playgrounds", params.id));
       playground.then((doc) => {
+       
         setCode(doc?.data()?.code?.html, "html");
         setCode(doc?.data()?.code?.css, "css");
         setCode(doc?.data()?.code?.javascript, "javascript");
+      }).catch((err) => {
+        toast.warning("you must be logged in to view this playground");
       });
     }
   }, []);

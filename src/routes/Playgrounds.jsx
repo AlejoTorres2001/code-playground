@@ -21,10 +21,10 @@ const Playgrounds = () => {
   //width hook
   const { height, width } = useWindowDimensions();
   return (
-    <div className="scrollbar-hide  bg-red-300">
+    <div className="scrollbar-hide">
       <div className="flex">
         {width > 1000 && <NavBar />}
-        <div className="bg-img w-screen h-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row">
+        <div className="bg-img md:h-screen w-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row md:flex-wrap">
           {value?.docs.length === 0 && (
             <div className="bg-[#2D323C]  h-1/5 w-2/4 flex flex-col justify-center items-center rounded-md shadow-md">
               <ExclamationIcon className="text-[#F7DF1E] w-[3rem] h-[3rem]"></ExclamationIcon>
