@@ -21,8 +21,8 @@ const Playgrounds = () => {
   //width hook
   const { height, width } = useWindowDimensions();
   return (
-    <div className="scrollbar-hide">
-      <div className="flex">
+    <div className="scrollbar-hide ">
+      <div className="flex h-screen">
         {width > 1000 && <NavBar />}
         <div className="bg-img md:h-screen w-screen md:ml-[4rem] flex bg-[#4F525B]  justify-center items-center flex-col md:flex-row md:flex-wrap">
           {value?.docs.length === 0 && (
