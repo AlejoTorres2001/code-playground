@@ -38,7 +38,7 @@ const Playground = ({ document }) => {
     return `https://${window.location.host}/${id}`;
   }
   return (
-    <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 m-4 mt-6">
+    <div className="flex items-center flex-col bg-[#1E1E1E] rounded overflow-hidden shadow-lg h-1/4 md:h-[40%] 2xl:h-1/4 m-3">
       <div className="flex w-full justify-between">
         <div className="flex items-center">
           <CopyToClipboard text={makeUrl()} onCopy={()=> toast.success("Url copied to clipboard!")} >
